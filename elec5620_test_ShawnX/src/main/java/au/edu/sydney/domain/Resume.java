@@ -8,20 +8,26 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testjobpost4")
-public class JobPost {
+@Table(name = "testResume1")
+public class Resume {
 
 	@Id
-	@Column(name = "JobPostid")
+	@Column(name = "ResumeId")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int JobPostid;
-
-	@Column(name = "age")
-	private int age;
+	private int ResumeId;
 
 	@Column(name = "Time")
 	private String time;
 
+	@Column(name = "JobPostId")
+	private int JobPostId;
+	
+	@Column(name = "Name")
+	private String name;
+	
+	@Column(name = "age")
+	private int age;
+	
 	@Column(name = "Company")
 	private String company;
 
@@ -43,12 +49,22 @@ public class JobPost {
 	@Column(name = "Requirements")
 	private String requirements;
 
+
+
 	public int getId() {
-		return JobPostid;
+		return ResumeId;
 	}
 
 	public void setId(int id) {
-		this.JobPostid = JobPostid;
+		this.ResumeId = ResumeId;
+	}
+	
+	public int getJobPostId() {
+		return ResumeId;
+	}
+
+	public void setJobPostId(int id) {
+		this.JobPostId = JobPostId;
 	}
 
 	public int getAge() {
@@ -67,6 +83,16 @@ public class JobPost {
 		this.time = time;
 	}
 
+	public String getNamen() {
+		// System.out.print("getlocation"+location);
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
 	public String getLocation() {
 		// System.out.print("getlocation"+location);
 		return location;
@@ -125,22 +151,8 @@ public class JobPost {
 	}
 	public String toString() {
 
-		        return "JobPost [JobPostid=" + JobPostid + ", Location=" + location + ", Company="
+		        return "Resume [Resumeid=" + ResumeId + ", Name="+name+", Age"+age+", Location=" + location + ", Company="
 	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + "]";
 		    }
 
 }
-/*
- * public String toString() { return "jobpost(Location: " + this.location + ")";
- * }
- */
-
-/*
- * public long getId() { return id; }
- * 
- * public void setId(long id) { this.id = id; }
- * 
- * public String getContent() { return content; }
- * 
- * public void setContent(String content) { this.content = content; }
- */

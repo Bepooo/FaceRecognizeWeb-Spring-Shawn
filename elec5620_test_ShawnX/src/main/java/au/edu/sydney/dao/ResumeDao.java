@@ -1,14 +1,17 @@
 package au.edu.sydney.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import au.edu.sydney.domain.Person;
+import au.edu.sydney.domain.Resume;
 
-@Repository(value = "personDao")
-public class PersonDao {
+@Repository(value = "resumeDao")
+public class ResumeDao {
 
 	@Resource
 	private SessionFactory sessionFactory;
@@ -21,7 +24,9 @@ public class PersonDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void savePerson(Person person) {
-		sessionFactory.getCurrentSession().save(person);
+	public void saveResume(Resume resume) {
+		sessionFactory.getCurrentSession().save(resume);
+
 	}
+
 }

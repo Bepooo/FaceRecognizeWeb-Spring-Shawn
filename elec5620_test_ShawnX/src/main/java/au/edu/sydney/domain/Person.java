@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "person")
+@Table(name = "person2")
 public class Person {
 
     @Id
@@ -24,6 +24,24 @@ public class Person {
 
     @Column(name = "last")
     private String last;
+    
+    @Column(name = "gender")
+    private  String gender;
+    
+    //@Column(name = "facetoken")
+    public  String facetoken;
+    
+    @Column(name = "facebase64")
+    private  String base;
+    
+    @Column(name = "favor")
+	private String favor;
+
+    @Column(name = "height")
+	private String height;
+
+    @Column(name = "faceto")
+	private String faceto;
 
     public int getId() {
         return id;
@@ -56,5 +74,56 @@ public class Person {
     public void setLast(String last) {
         this.last = last;
     }
+    
+    public String getGender() {
+        return gender;
+    }
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
+    public  String getFaceToken() {
+        return facetoken;
+    }
+
+    public void setFaceToken(String facetoken) {
+        this.facetoken = facetoken;
+    }
+    
+    public  String getFaceto() {
+        return faceto;
+    }
+
+    public void setFaceto(String faceto) {
+        this.faceto = faceto;
+    }
+    
+    public  String getFavor() {
+        return favor;
+    }
+
+    public void setFavor(String favor) {
+        this.favor = favor;
+    }
+    public  String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+    public  String getBase() {
+        return base;
+    }
+
+    public void setBase(String aaa) {
+        this.base = base;
+    }
+    public String toString() {
+
+        return "Person [Id=" + id + ", First=" + first + ", Last="
+            + last + ", Age="+age+", Gender=" + gender + ", FaceToken=" 
+        		+ faceto + ", Favor="+favor+", Height="+height+"]";
+    }
 }
