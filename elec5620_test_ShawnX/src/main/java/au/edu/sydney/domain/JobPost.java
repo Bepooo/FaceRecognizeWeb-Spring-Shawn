@@ -48,7 +48,7 @@ public class JobPost {
 	}
 
 	public void setId(int id) {
-		this.JobPostid = JobPostid;
+		this.JobPostid = id;
 	}
 
 	public int getAge() {

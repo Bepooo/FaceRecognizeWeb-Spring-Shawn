@@ -42,6 +42,8 @@ For candidatures
 
 				<td>${JobPost.employmenttype}</td>
 				
+				<td>${JobPost.jobdescription}</td>
+				
 				<td><a href="<c:url value='/apply-${JobPost.id}-apply'/>">apply</a></td>
 
 			</tr>

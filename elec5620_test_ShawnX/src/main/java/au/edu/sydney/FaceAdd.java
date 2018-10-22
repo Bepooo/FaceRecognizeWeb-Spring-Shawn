@@ -11,7 +11,7 @@ public static void add(int id, String name, String face) {
 	try {
 		Map<String, Object> map = new HashMap<>();
 		map.put("image", face);
-		map.put("group_id", "group_902");
+		map.put("group_id", "group_903");
 		map.put("user_id", id);
 		map.put("user_info", name);
 		map.put("liveness_control", "NORMAL");

@@ -25,11 +25,17 @@ public class PersonService {
 	
 	
 	public List getResumeByCompany(String co){
-        return ResumeDao.getResumeByCompany(co);
+       
     }
 
 	
 	public List getResumes() {
         return ResumeDao.getResumes();
     }*/
+
+
+	public List getPersonByFirst(String username) {
+		// TODO Auto-generated method stub
+		 return PersonDao.getPersonByFirst(username);
+	}
 }

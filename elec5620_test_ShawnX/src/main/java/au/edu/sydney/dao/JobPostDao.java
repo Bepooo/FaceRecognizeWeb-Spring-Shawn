@@ -35,7 +35,7 @@ public class JobPostDao {
 		 sessionFactory.getCurrentSession().createQuery("delete JobPost where id=?").setParameter(0, i).executeUpdate();
 	}
 	
-    public List getjobPosts() {
+    public List getJobPosts() {
         return sessionFactory.getCurrentSession().createCriteria(JobPost.class).list();
     }
 //.uniqueResult()

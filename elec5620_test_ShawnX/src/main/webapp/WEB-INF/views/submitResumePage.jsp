@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
+
     <head>
     <p><a href="http://localhost:8080/sydney/JobPostHome">Job Post</a>
     <a href="http://localhost:8080/sydney/ResumeCentre">Resume Centre</a>
@@ -7,14 +8,15 @@
     </p>
     </head>
     <body>
+    
         <h3>Welcome, Enter Your Personal Information</h3>
         <h3>Welcome, Enter Your Personal Information</h3>
         <h3>Welcome, Enter Your Personal Information</h3>
-        <form id="saveForm" action="saveResume" method="post">
+        <form id="saveForm" action="save-${model}-resume" method="post">
         <table style="font-size: :16px">
         <tr>
                 <td>JobPost Id</td>
-                <td><input type="text" value="${model}" name="JobPostId" /></td>
+                <td><input type="text" value="${model}" name="model" /></td>
             </tr>
             <tr>
                 <td>Name</td>

@@ -18,17 +18,28 @@
 				<td>Last Name</td>
 				<td><input type="text" name="last" /></td>
 			</tr>
+			
 			<tr>
 				<td>Age</td>
 				<td><input type="text" name="age" /></td>
 			</tr>
 			<tr>
 				<td>Gender</td>
-				<td><input type="text" name="gender" /></td>
+				<td><!-- <input type="text" name="gender" /> -->
+				<select name="gender" name="gender">
+			<option value="male">male</option>
+			<option value="female">female</option>
+
+		</select>
+		</td>
 			</tr>
 			<tr>
 				<td>Favor</td>
-				<td><input type="text" name="favor" /></td>
+				<td><!-- <input type="text" name="favor" /> -->
+				<select name="favor" name="favor">
+				<option value="black">Black</option>
+			<option value="blue">Blue</option>
+			<option value="white">White</option></td>
 			</tr>
 			<tr>
 				<td>Height</td>
@@ -38,6 +49,10 @@
 				<td>FaceToken</td>
 				<td><input type="hidden" value=${model} name="faceto" /></td>
 			</tr>
+<!-- 			<tr>
+				<td>FaceType</td>
+				<td><input type="text" value=${ft} name="facety" /></td>
+			</tr> -->
 			<tr>
 				<td><input type="submit" value="Submit" /></td>
 				<td><input type="reset" value="Reset" /></td>

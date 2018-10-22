@@ -8,24 +8,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testResume1")
+@Table(name = "testResume2")
 public class Resume {
 
 	@Id
 	@Column(name = "ResumeId")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int ResumeId;
+	private int resumeid;
 
 	@Column(name = "Time")
 	private String time;
 
 	@Column(name = "JobPostId")
-	private int JobPostId;
+	private int jobpostid;
 	
 	@Column(name = "Name")
 	private String name;
 	
-	@Column(name = "age")
+	@Column(name = "Age")
 	private int age;
 	
 	@Column(name = "Company")
@@ -52,19 +52,19 @@ public class Resume {
 
 
 	public int getId() {
-		return ResumeId;
+		return resumeid;
 	}
 
-	public void setId(int id) {
-		this.ResumeId = ResumeId;
+	public void setId(int resumeid) {
+		this.resumeid = resumeid;
 	}
 	
 	public int getJobPostId() {
-		return ResumeId;
+		return jobpostid;
 	}
 
-	public void setJobPostId(int id) {
-		this.JobPostId = JobPostId;
+	public void setJobPostId(int jobpostid) {
+		this.jobpostid = jobpostid;
 	}
 
 	public int getAge() {
@@ -83,7 +83,7 @@ public class Resume {
 		this.time = time;
 	}
 
-	public String getNamen() {
+	public String getName() {
 		// System.out.print("getlocation"+location);
 		return name;
 	}
@@ -151,7 +151,7 @@ public class Resume {
 	}
 	public String toString() {
 
-		        return "Resume [Resumeid=" + ResumeId + ", Name="+name+", Age"+age+", Location=" + location + ", Company="
+		        return "Resume [Resumeid=" + resumeid + ", JobPostId=" + jobpostid + ", Name="+name+", Age="+age+", Location=" + location + ", Company="
 	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + "]";
 		    }
 

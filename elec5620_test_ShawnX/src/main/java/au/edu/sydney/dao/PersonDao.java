@@ -1,5 +1,7 @@
 package au.edu.sydney.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
@@ -23,5 +25,11 @@ public class PersonDao {
 
 	public void savePerson(Person person) {
 		sessionFactory.getCurrentSession().save(person);
+	}
+
+	public List getPersonByFirst(String username) {
+		// TODO Auto-generated method stub
+		return (List) sessionFactory.getCurrentSession().createQuery("from Person where first=?").setParameter(0, username).list();
+		//return null;
 	}
 }

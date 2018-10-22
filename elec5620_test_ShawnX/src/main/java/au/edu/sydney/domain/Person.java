@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "person2")
+@Table(name = "testperson1")
 public class Person {
 
     @Id
@@ -28,8 +28,8 @@ public class Person {
     @Column(name = "gender")
     private  String gender;
     
-    //@Column(name = "facetoken")
-    public  String facetoken;
+  /*  //@Column(name = "facetoken")
+    public  String facetoken;*/
     
     @Column(name = "facebase64")
     private  String base;
@@ -42,6 +42,12 @@ public class Person {
 
     @Column(name = "faceto")
 	private String faceto;
+
+    @Column(name = "advice")
+	private String advice;
+
+    @Column(name = "facety")
+	private String facety;
 
     public int getId() {
         return id;
@@ -83,13 +89,13 @@ public class Person {
         this.gender = gender;
     }
     
-    public  String getFaceToken() {
+    /*public  String getFaceToken() {
         return facetoken;
     }
 
     public void setFaceToken(String facetoken) {
         this.facetoken = facetoken;
-    }
+    }*/
     
     public  String getFaceto() {
         return faceto;
@@ -113,6 +119,14 @@ public class Person {
     public void setHeight(String height) {
         this.height = height;
     }
+    public  String getFaceTy() {
+        return facety;
+    }
+
+    public void setFaceTy(String facety) {
+        this.facety = facety;
+    }
+    
     public  String getBase() {
         return base;
     }
@@ -120,10 +134,21 @@ public class Person {
     public void setBase(String aaa) {
         this.base = base;
     }
+    
+    public  String getAdvice() {
+        return advice;
+    }
+    
+	public void setAdvice(String advice) {
+		// TODO Auto-generated method stub
+		this.advice = advice;
+		
+	}
     public String toString() {
 
         return "Person [Id=" + id + ", First=" + first + ", Last="
             + last + ", Age="+age+", Gender=" + gender + ", FaceToken=" 
-        		+ faceto + ", Favor="+favor+", Height="+height+"]";
+        		+ faceto + ", Favor="+favor+", Height="+height+" ,FaceType="+facety+", Advice="+advice+"]";
     }
+   
 }

@@ -34,7 +34,7 @@ public class FaceSearch {
 			Map<String, Object> map = new HashMap<>();
 			map.put("image", face);
 			map.put("liveness_control", "LOW");
-			map.put("group_id_list", "group_902");
+			map.put("group_id_list", "group_903");
 			map.put("image_type", "FACE_TOKEN");
 			map.put("quality_control", "LOW");
 
@@ -81,7 +81,7 @@ public class FaceSearch {
 			Map<String, Object> map = new HashMap<>();
 			map.put("image", face);
 			map.put("liveness_control", "LOW");
-			map.put("group_id_list", "group_902");
+			map.put("group_id_list", "group_903");
 			map.put("image_type", "FACE_TOKEN");
 			map.put("quality_control", "LOW");
 
@@ -137,7 +137,7 @@ public class FaceSearch {
 			Map<String, Object> map = new HashMap<>();
 			map.put("image", face);
 			map.put("liveness_control", "LOW");
-			map.put("group_id_list", "group_902");
+			map.put("group_id_list", "group_903");
 			map.put("image_type", "FACE_TOKEN");
 			map.put("quality_control", "LOW");
 
@@ -192,7 +192,7 @@ public class FaceSearch {
 			Map<String, Object> map = new HashMap<>();
 			map.put("image", face);
 			map.put("liveness_control", "LOW");
-			map.put("group_id_list", "group_902");
+			map.put("group_id_list", "group_903");
 			map.put("image_type", "FACE_TOKEN");
 			map.put("quality_control", "LOW");
 

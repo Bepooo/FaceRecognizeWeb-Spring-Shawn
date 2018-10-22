@@ -41,15 +41,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import au.edu.sydney.dao.FeedbackDao;
 import au.edu.sydney.dao.JobPostDao;
 import au.edu.sydney.dao.PersonDao;
+import au.edu.sydney.dao.ClothesDao;
+import au.edu.sydney.dao.ResumeDao;
+import au.edu.sydney.dao.ShoppingassistDao;
+import au.edu.sydney.domain.Clothes;
+import au.edu.sydney.domain.Feedback;
 import au.edu.sydney.domain.JobPost;
 import au.edu.sydney.domain.Person;
+//import au.edu.sydney.domain.Product;
 import au.edu.sydney.domain.Resume;
+import au.edu.sydney.domain.Shoppingassist;
+import au.edu.sydney.service.ClothesService;
+import au.edu.sydney.service.FeedbackService;
 import au.edu.sydney.service.JobPostService;
 import au.edu.sydney.service.PersonService;
+//import au.edu.sydney.service.ProductService;
 import au.edu.sydney.service.ResumeService;
-
+import au.edu.sydney.service.ShoppingassistService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,6 +96,62 @@ public class HomeController {
 		return "home";
 	}
 
+	@RequestMapping(value = "/FaceFacebookLogin", method = RequestMethod.GET)
+	public String home(Locale locale) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+
+
+		return "FaceFacebookLogin";
+	}
+	
+	
+	
+	@RequestMapping(value = "/FaceTechies", method = RequestMethod.GET)
+	public String FaceTechies(Locale locale) {
+		return "FaceTechiesHome";
+	}
+	
+	@Autowired
+	ShoppingassistDao shoppingassistDao;
+	@RequestMapping(value = "/FaceAddShoppingassist", method = RequestMethod.POST)
+	public String AddShoppingassist(Shoppingassist shoppingassist) {
+
+		Shoppingassist f = new Shoppingassist();
+
+
+		f.setName(shoppingassist.getName());
+		f.setPassword(shoppingassist.getPassword());
+
+
+		shoppingassistDao.saveShoppingassist(f);
+		System.out.print(shoppingassist.getName());
+		System.out.print(shoppingassist.getPassword());
+		return "FaceHome";
+	}
+	@Autowired
+	ShoppingassistService shoppingassistService;
+
+	@RequestMapping(value = "/FaceReadShoppingassist", method = RequestMethod.GET)
+	public String FaceReadShoppingassist(ModelMap model) {
+		System.out.println("FaceReadShoppingassist");
+
+		// 遍历集合，查看查询到的数据
+		List shoppingassists = shoppingassistService.getShoppingassists();
+		model.addAttribute("Shoppingassists", shoppingassists);
+		System.out.println(shoppingassists);
+
+		return "FaceShowShoppingassists";
+	}
+	
+
+	@RequestMapping(value = { "/delete-{id}-shoppingassist" }, method = RequestMethod.GET)
+	public String deleteShoppingassistById(@PathVariable int id) {
+		System.out.println("delete");
+		shoppingassistService.deleteShoppingassistById(id);
+		return "FaceHome";
+	}
+	
 	/*
 	 * @RequestMapping(value = "/jdbcAdd", method = RequestMethod.GET) public String
 	 * jdbcAdd(Locale locale, Model model) {
@@ -164,14 +231,14 @@ public class HomeController {
 	 * 
 	 * return "home"; }
 	 */
-	
+
 	//////////////////////////////
-	//Facedetect
+	// Facedetect
 	//////////////////////////////
 	@RequestMapping(value = "/FaceHome", method = RequestMethod.GET)
 	public String facehome(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-
+		Local.DeleteFile();
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
@@ -182,81 +249,255 @@ public class HomeController {
 		return "FaceHome";
 	}
 	
-	/*@RequestMapping(value = "/FaceDetectLogin", method = RequestMethod.GET)
-	public String advices() {
+	@RequestMapping(value = "/FaceLookingfor", method = RequestMethod.GET)
+	public String Facelookingfor(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
 		
-		System.out.println("FaceDetectLogin");
-		new Local().renameFile("D:\\5620\\download", "D:\\\\5620\\\\photo.png");
-		String photo="D:\\\\5620\\\\photo.png";
-		Facedetect.detect(photo);
 		
-		return "home";
-	}*/
+		
+
+		return "FaceLookingforClothes";
+	}
+
+	@RequestMapping(value = "/FaceWriteFeedback", method = RequestMethod.GET)
+	public String FaceWriteFeedback(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
+
+		return "FaceWriteFeedback";
+	}
 	
+	@RequestMapping(value = "/FaceWriteClothes", method = RequestMethod.GET)
+	public String FaceWritePrdocuct(Locale locale, Model model) {
+
+
+
+		return "FaceWriteClothes";
+	}
+	
+	
+	@Autowired
+	ClothesDao clothesDao;
+	@RequestMapping(value = "/FaceAddClothes", method = RequestMethod.POST)
+	public String addClothes(Clothes clothes) {
+
+		Clothes f = new Clothes();
+
+
+		f.setColor(clothes.getColor());
+		f.setLocation(clothes.getLocation());
+		f.setType(clothes.getType());
+		f.setPrice(clothes.getPrice());
+
+		clothesDao.saveClothes(f);
+		System.out.print(clothes.getColor());
+		System.out.print(clothes.getType());
+		return "FaceHome";
+	}
+
+
+	@Autowired
+	ClothesService clothesService;
+	@RequestMapping(value = { "/FaceQueryClothes" }, method = RequestMethod.POST)
+	public String FaceFindClothes(Feedback feedback) {
+		System.out.println("query clothes"+feedback);
+		String[] limits=new String[2]; 
+		limits[0]=feedback.getFeedback();
+		limits[1]=feedback.getType();
+		System.out.println("color= "+limits[0]);
+		System.out.println("type= "+limits[1]);
+		List clothessquery=clothesService.getClothesByQuery(limits);
+		
+		//model.addAttribute("Products", productsquery);
+		System.out.println(clothessquery);
+		//System.out.println(model);
+		//return new ModelAndView("ShowJobPosterResumes", "model",model);
+		return "FaceHome";
+	}
+	
+	
+	@Autowired
+	FeedbackDao feedbackDao;
+
+	@RequestMapping(value = "/FaceSubmitFeedback")
+	public String addFeedback(Feedback feedback) {
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Feedback f = new Feedback();
+		Date dateobj = new Date();
+		System.out.println(df.format(dateobj));
+		String time = df.format(dateobj);
+		// f.setFeedback(feedback.getId());
+
+		f.setFeedback(feedback.getFeedback());
+		f.setTime(time);
+		f.setType(feedback.getType());
+
+		feedbackDao.saveFeedback(f);
+		System.out.print(feedback.getFeedback());
+		System.out.print(feedback.getType());
+		return "FaceHome";
+	}
+
+	/*
+	 * @RequestMapping(value = "/FaceDetectLogin", method = RequestMethod.GET)
+	 * public String advices() {
+	 * 
+	 * System.out.println("FaceDetectLogin"); new
+	 * Local().renameFile("D:\\5620\\download", "D:\\\\5620\\\\photo.png"); String
+	 * photo="D:\\\\5620\\\\photo.png"; Facedetect.detect(photo);
+	 * 
+	 * return "home"; }
+	 */
+
 	@RequestMapping(value = "/FaceRegisterHome", method = RequestMethod.GET)
 	public String faceregister() {
-		
+		//Local.DeleteFile();
 		System.out.println("FaceRegisterHome");
 		return "FaceRegistering";
 	}
-		
+
 	@RequestMapping(value = "/FaceRegisterStart", method = RequestMethod.GET)
 	public ModelAndView faceRegisterStart(ModelMap model) {
-		
+
 		System.out.println("FaceRegisterStart");
 		new Local().renameFile("D:\\5620\\download", "D:\\\\5620\\\\photo.png");
-		String photo="D:\\\\5620\\\\photo.png";
-		String facetoken=Facedetect.detect(photo);
-		return  new ModelAndView("FaceRegisterInformation", "model", facetoken);
+		String photo = "D:\\\\5620\\\\photo.png";
+		String facetoken = Facedetect.detect(photo);
+		return new ModelAndView("FaceRegisterInformation", "model", facetoken);
+
+	}
+
+	//////////////////////////////////
+	@Autowired
+	PersonService personService;	
+
+	@RequestMapping(value = "/FaceAddPerson")
+	public String addPerson(Person person) {
+		//Person p = new Person();
+		String facetokeninreg = person.getFaceto();
+		String a = FaceSearch.RegisterSearch(facetokeninreg);
+		System.out.println("a= " + a);
+		String advice="";
+		if (a.equals("SUCCESS")) {
+			String b = FaceSearch.ResultSearch(facetokeninreg);
+			System.out.println("b= " + b);
+			if (b.equals("no")) {
+				System.out.println("user not exists, true");
+
+				person.setAdvice(Local.getAdvice(person));
+				
+				//person.setAdvice(advice);
+				System.out.println("Person= "+person);
+				personService.addPerson(person);
+				FaceAdd.add(person.getId(), person.getFirst(), person.getFaceto());
+				// get advices
+				return "FaceUserMainPage";
+			} else if (b.equals("yes")) {
+				System.out.println("user exists");
+
+				return "FaceUserExistPage";
+			}
+		} else if (a.equals("Not Found")) {
+
+			
+	
+			person.setAdvice(Local.getAdvice(person));
+			
+			System.out.println("Person= "+person);
+			personService.addPerson(person);
+			FaceAdd.add(person.getId(), person.getFirst(), person.getFaceto());
+			return "FaceUserMainPage";
+		} else {
+			return "FaceWrongPage";
+
+		}
+
+		System.out.print(person);
+		return "home";
+	}
+	
+	@RequestMapping(value = "/FaceLoginHome", method = RequestMethod.GET)
+	public String FaceLoginHome() {
+		//Local.DeleteFile();
+		System.out.println("FaceLoginHome");
+		return "FaceLoginStart";
+	}
+	
+	@RequestMapping(value = "/FaceLogining", method = RequestMethod.GET)
+	public ModelAndView FaceLoginHome(ModelMap model) {
+
+		System.out.println("FaceLoginStart");
+		new Local().renameFile("D:\\5620\\download", "D:\\\\5620\\\\photo.png");
+		String photo = "D:\\\\5620\\\\photo.png";
+		String ft = Facedetect.detect(photo);
+		String a = FaceSearch.LoginSearch(ft);
+		if (a.equals("yes")) {
+			System.out.println("user exists, login");
+			String username = Local.getName(ft);
+			List p = personService.getPersonByFirst(username);
+			System.out.println("p= "+p);
+			model.addAttribute("PersonInfo", p);
+			System.out.println("model= "+model);
+			return new ModelAndView("FaceUserMainPage", "model", model);
+			/*System.out.println(username);
+			UserPage.UserPage(username);*/
+		} else if (a.equals("no")) {
+			//no user page
+			//FailPage.UserCanNotFind();
+			String e="User Can Not Find";
+			model.addAttribute("ErrorMessage", e);
+			return new ModelAndView("FaceErrormessage", "model", model);
+		} else {
+			//FailPage.TryAgain(a);
+			String e="System met some problem, try again~";
+			model.addAttribute("ErrorMessage", e);
+			return new ModelAndView("FaceErrorMessage", "model", model);
+		}
+		
+		//return new ModelAndView("FaceRegisterInformation", "model", facetoken);
+		
+		
 
 	}
 	
-	//////////////////////////////////
 	@Autowired
-	PersonService personService;
-	 @RequestMapping(value = "/FaceAddPerson")
-	    public String addPerson(Person person) {
-		 Person p = new Person();
-			
-			 
-			 String facetokeninreg=person.getFaceto();
-			 String a = FaceSearch.RegisterSearch(facetokeninreg);
-				System.out.println("a= " + a);
-				if (a.equals("SUCCESS")) {
-					String b = FaceSearch.ResultSearch(facetokeninreg);
-					System.out.println("b= " + b);
-					if (b.equals("no")) {
-						System.out.println("user not exists, true");
-						personService.addPerson(person);
-						FaceAdd.add(person.getId(),person.getFirst(), person.getFaceto());
-						//get advices
-						return "FaceUserMainPage";
-					} else if (b.equals("yes")) {
-						System.out.println("user exists");
-						
+	FeedbackService feedbackService;
 
-						return "FaceUserExistPage";
-					}
-				} else if (a.equals("Not Found")) {
-					
-					personService.addPerson(person);
-					FaceAdd.add(person.getId(),person.getFirst(), person.getFaceto());
-					return "FaceUserMainPage";
-				} else {
-					return "FaceWrongPage";
-	
-				}
-				
-			 System.out.print(person);
-	        return "home";
-	    }
-	
-	
-	
+	@RequestMapping(value = "/FaceReadFeedback", method = RequestMethod.GET)
+	public String FaceReadFeedbacks(ModelMap model) {
+		System.out.println("FaceReadFeedbacks");
+
+		// 遍历集合，查看查询到的数据
+		List feedbacks = feedbackService.getFeedbacks();
+		model.addAttribute("Feedbacks", feedbacks);
+		System.out.println(feedbacks);
+
+		return "FaceShowFeedbacks";
+	}
+
+	@RequestMapping(value = { "/delete-{id}-feedback" }, method = RequestMethod.GET)
+	public String deleteFeedbackById(@PathVariable int id) {
+		System.out.println("delete");
+		feedbackService.deleteFeedbackById(id);
+		return "FaceHome";
+	}
 	/////////////////////////////////////////////////////////
-	
+
 	////////////////////////////////////////////////////////
-	
+
 	@Autowired
 	JobPostDao jobpostDao;
 
@@ -323,7 +564,7 @@ public class HomeController {
 
 	@RequestMapping(value = { "/delete-{id}-jobpost" }, method = RequestMethod.GET)
 	public String deleteJobPostById(@PathVariable int id) {
-		System.out.println("删除单个");
+		System.out.println("delete one");
 		jobPostService.deleteJobPostById(id);
 		return "home";
 	}
@@ -355,13 +596,6 @@ public class HomeController {
 		return "jobposts";
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	//////////////////////////////////////////
 	// For job seekers
 	//////////////////////////////////////////
@@ -372,54 +606,70 @@ public class HomeController {
 		// 遍历集合，查看查询到的数据
 		List jobposts = jobPostService.getJobPosts();
 		model.addAttribute("JobPosts", jobposts);
-		System.out.print(jobposts);
+		System.out.println(jobposts);
 
 		return "jobSeekerViewAllJobPosts";
 	}
-	
-	
+
+	@Autowired
+	ResumeDao resumeDao;
+
+	@RequestMapping(value = "/save-{model}-resume")
+	public String addResume(Resume resume, int model) {
+		System.out.println("model= " + model);
+		Resume r = new Resume();
+
+		r.setJobPostId(model);
+		r.setName(resume.getName());
+		r.setAge(resume.getAge());
+
+		System.out.println(r);
+		resumeDao.saveResume(r);
+		return "home";
+	}
+
 	@Autowired
 	ResumeService resumeService;
-	
-	/*@RequestMapping(value = "/apply-{id}-apply", method = RequestMethod.GET)
-	public ModelAndView applyJobPostById(@PathVariable int id, ModelMap model) {
-		new ModelAndView("submitResumePage", "jobpost", new JobPost());
-		System.out.println("applying");
-		model.addAttribute("Resumeid", id);
-		return new ModelAndView("submitResumePage", "jobpost", new JobPost());
-	}*/
-	/*@RequestMapping(value = "/JobPostHome", method = RequestMethod.GET)
-	public ModelAndView showFormJP() {
-		return new ModelAndView("JobPostHome", "jobpost", new JobPost());
-	}*/
+
+	/*
+	 * @RequestMapping(value = "/apply-{id}-apply", method = RequestMethod.GET)
+	 * public ModelAndView applyJobPostById(@PathVariable int id, ModelMap model) {
+	 * new ModelAndView("submitResumePage", "jobpost", new JobPost());
+	 * System.out.println("applying"); model.addAttribute("Resumeid", id); return
+	 * new ModelAndView("submitResumePage", "jobpost", new JobPost()); }
+	 */
+	/*
+	 * @RequestMapping(value = "/JobPostHome", method = RequestMethod.GET) public
+	 * ModelAndView showFormJP() { return new ModelAndView("JobPostHome", "jobpost",
+	 * new JobPost()); }
+	 */
 	@RequestMapping(value = { "/apply-{id}-apply" }, method = RequestMethod.GET)
 	public ModelAndView applyJobPostById(@PathVariable int id, ModelMap model) {
-		System.out.println("applying"+id);
+		System.out.println("applying" + id);
 		model.addAttribute("JobPostId", id);
 
-		System.out.print(id);
-		return  new ModelAndView("submitResumePage", "model", id);
-		/*Resume resume=new Resume();
-		resume.setJobPostId((id));*/
-		
-		//return "submitResumePageController";
-	}
-	
+		System.out.println(model);
+		return new ModelAndView("submitResumePage", "model", id);
+		/*
+		 * Resume resume=new Resume(); resume.setJobPostId((id));
+		 */
 
-	 @RequestMapping(value = "/saveResume")
-    public String addResume(Resume resume) {
-		 resumeService.addResume(resume);
-		 System.out.print(resume);
-        return "home";
-    }
-	
-	
-	
-	
-	
-	
-	
-	
+		// return "submitResumePageController";
+	}
+
+	////////////////////// resumecentre
+	@RequestMapping(value = { "/ResumeCentre" }, method = RequestMethod.GET)
+	public ModelAndView findResumeByJobPostPoster(ModelMap model) {
+		System.out.println("queryresume");
+		String rid = "18";
+		List resumesquery = resumeService.getResumeByRid(rid);
+		model.addAttribute("Resumes", resumesquery);
+		System.out.println(resumesquery);
+		System.out.println(model);
+		return new ModelAndView("ShowJobPosterResumes", "model",model);
+		//return"ShowJobPosterResumes";
+	}
+
 	/*
 	 * /*
 	 * 
@@ -454,7 +704,5 @@ public class HomeController {
 
 		return "FaceDetect";
 	}
-
-	
 
 }

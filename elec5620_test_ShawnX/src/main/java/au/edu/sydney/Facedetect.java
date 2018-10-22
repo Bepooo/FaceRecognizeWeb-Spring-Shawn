@@ -47,9 +47,16 @@ public class Facedetect {
 			String[] seperate1 = result.split("face_token");
 			String[] seperate2 = seperate1[1].split(":");
 			String[] seperate3 = seperate2[1].split(",");
-			String facetoken = seperate3[0].substring(1, seperate3[0].length() - 1);
-			System.out.println(facetoken);
-			return facetoken;
+			String backinfo=seperate3[0].substring(1, seperate3[0].length() - 1);
+			/*String[] backinfo=new String[2];
+			backinfo[0] = seperate3[0].substring(1, seperate3[0].length() - 1);
+			String[] sep1= result.split("face_shape");
+			String[] sep2 = sep1[1].split(",");
+			String[] sep3 = sep2[0].split(":");
+			backinfo[1] = sep3[2].substring(1, sep3[2].length() - 1);*/
+			
+			System.out.println(backinfo);
+			return backinfo;
 			// return result;
 		} catch (Exception e) {
 			e.printStackTrace();

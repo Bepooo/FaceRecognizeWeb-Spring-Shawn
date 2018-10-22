@@ -32,4 +32,10 @@ public class ResumeService {
 	public List getResumes() {
         return ResumeDao.getResumes();
     }*/
+
+
+	public List getResumeByRid(String rid) {
+		// TODO Auto-generated method stub
+		return ResumeDao.getResumeByRid(rid);
+	}
 }

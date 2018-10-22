@@ -26,6 +26,6 @@ public class JobPostService {
 
 	
 	public List getJobPosts() {
-        return jobPostDao.getjobPosts();
+        return jobPostDao.getJobPosts();
     }
 }
