@@ -44,17 +44,23 @@ import org.springframework.web.servlet.ModelAndView;
 import au.edu.sydney.dao.FeedbackDao;
 import au.edu.sydney.dao.JobPostDao;
 import au.edu.sydney.dao.PersonDao;
+import au.edu.sydney.dao.AnnouncementDao;
 import au.edu.sydney.dao.ClothesDao;
+import au.edu.sydney.dao.DonationDao;
 import au.edu.sydney.dao.ResumeDao;
 import au.edu.sydney.dao.ShoppingassistDao;
+import au.edu.sydney.domain.Announcement;
 import au.edu.sydney.domain.Clothes;
+import au.edu.sydney.domain.Donation;
 import au.edu.sydney.domain.Feedback;
 import au.edu.sydney.domain.JobPost;
 import au.edu.sydney.domain.Person;
 //import au.edu.sydney.domain.Product;
 import au.edu.sydney.domain.Resume;
 import au.edu.sydney.domain.Shoppingassist;
+import au.edu.sydney.service.AnnouncementService;
 import au.edu.sydney.service.ClothesService;
+import au.edu.sydney.service.DonationService;
 import au.edu.sydney.service.FeedbackService;
 import au.edu.sydney.service.JobPostService;
 import au.edu.sydney.service.PersonService;
@@ -76,7 +82,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	public int JobPostid;
+	public int JobPostid,LargestAnnouncementid;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -95,6 +101,66 @@ public class HomeController {
 
 		return "home";
 	}
+	
+	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
+	public String adminHome(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
+		
+		List jobposts = jobPostService.getJobPosts();
+		model.addAttribute("JobPosts", jobposts);
+		System.out.print(jobposts);
+
+		return "adminHome";
+	}
+	
+	
+
+
+	@Autowired
+	AnnouncementService announcementService;
+	@RequestMapping(value = "/announcementManagement", method = RequestMethod.GET)
+	public String announcementManagement(ModelMap model) {
+
+		System.out.println("Announcement Management");
+		List announcements = announcementService.getAnnouncements();
+		Object announcement1=announcements.get(0);
+		model.addAttribute("Announcement", announcement1);
+		System.out.println(announcement1);
+
+		return "readAnnouncementManagement";
+	}
+
+	@RequestMapping(value = "/WriteNewAnnouncement", method = RequestMethod.GET)
+	public String WriteNewAnnouncement(Locale locale) {
+		return "editNewAnnouncement";
+	}
+
+	@Autowired
+	//AnnouncementService announcementService;
+	AnnouncementDao announcementDao;
+	@RequestMapping(value = "/SubmitNewAnnouncement", method = RequestMethod.POST)
+	public String WriteNewAnnouncement(Announcement announcement) {
+		announcementDao.deleteAnnouncement();
+		Announcement f = new Announcement();
+
+
+		f.setContent(announcement.getContent());
+
+
+		announcementDao.saveAnnouncement(f);
+		System.out.print(announcement.getContent());
+		return "adminHome";
+	}
+	
+	
+	
 
 	@RequestMapping(value = "/FaceFacebookLogin", method = RequestMethod.GET)
 	public String home(Locale locale) {
@@ -111,6 +177,14 @@ public class HomeController {
 	public String FaceTechies(Locale locale) {
 		return "FaceTechiesHome";
 	}
+	
+
+
+
+
+	
+	
+
 	
 	@Autowired
 	ShoppingassistDao shoppingassistDao;
@@ -283,10 +357,37 @@ public class HomeController {
 	@RequestMapping(value = "/FaceWriteClothes", method = RequestMethod.GET)
 	public String FaceWritePrdocuct(Locale locale, Model model) {
 
-
-
 		return "FaceWriteClothes";
 	}
+	
+	
+	@Autowired
+	DonationDao donationDao;
+	
+	@RequestMapping(value = "/FaceMakeDonation", method = RequestMethod.GET)
+	public String FaceMakeDonation(Locale locale, Model model) {
+
+		return "FaceMakeDonation";
+	}
+	
+	
+	@RequestMapping(value = "/FaceAddDonation", method = RequestMethod.POST)
+	public String FaceAddDonation(Donation donation) {
+
+		Donation f = new Donation();
+
+
+		f.setColor(donation.getColor());
+		f.setType(donation.getType());
+		f.setDescription(donation.getDescription());
+
+		donationDao.saveDonation(f);
+		System.out.print(donation.getColor());
+		System.out.print(donation.getType());
+		System.out.print(donation.getDescription());
+		return "FaceShowDonationAfterAdd";
+	}
+	
 	
 	
 	@Autowired
@@ -487,11 +588,34 @@ public class HomeController {
 
 		return "FaceShowFeedbacks";
 	}
+	
 
 	@RequestMapping(value = { "/delete-{id}-feedback" }, method = RequestMethod.GET)
 	public String deleteFeedbackById(@PathVariable int id) {
 		System.out.println("delete");
 		feedbackService.deleteFeedbackById(id);
+		return "FaceHome";
+	}
+	
+	
+	
+	@Autowired
+	DonationService donationService;
+
+	@RequestMapping(value = "/FaceManageDonation", method = RequestMethod.GET)
+	public String FaceShowDonation(ModelMap model) {
+		System.out.println("FaceShowDonation");
+		List donations = donationService.getDonations();
+		model.addAttribute("Donations", donations);
+		System.out.println(donations);
+
+		return "FaceShowDonation";
+	}
+	
+	@RequestMapping(value = { "/delete-{id}-donation" }, method = RequestMethod.GET)
+	public String deleteDonationById(@PathVariable int id) {
+		System.out.println("delete");
+		donationService.deleteDonationById(id);
 		return "FaceHome";
 	}
 	/////////////////////////////////////////////////////////
@@ -617,11 +741,14 @@ public class HomeController {
 	@RequestMapping(value = "/save-{model}-resume")
 	public String addResume(Resume resume, int model) {
 		System.out.println("model= " + model);
+		System.out.println(resume);
 		Resume r = new Resume();
-
 		r.setJobPostId(model);
 		r.setName(resume.getName());
 		r.setAge(resume.getAge());
+		r.setGender(resume.getGender());
+		r.setEducation(resume.getEducation());
+		r.setCapability(resume.getCapability());
 
 		System.out.println(r);
 		resumeDao.saveResume(r);
@@ -661,7 +788,7 @@ public class HomeController {
 	@RequestMapping(value = { "/ResumeCentre" }, method = RequestMethod.GET)
 	public ModelAndView findResumeByJobPostPoster(ModelMap model) {
 		System.out.println("queryresume");
-		String rid = "18";
+		String rid = "9";
 		List resumesquery = resumeService.getResumeByRid(rid);
 		model.addAttribute("Resumes", resumesquery);
 		System.out.println(resumesquery);

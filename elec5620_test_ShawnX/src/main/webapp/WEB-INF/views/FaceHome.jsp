@@ -2,20 +2,50 @@
 <%@ page session="false" %>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<title>Trandiano</title>
 </head>
-<body>
-<h1>
+<body background="https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+<div class="clearfix" style="margin-bottom: 50px;"></div>
+<h1  class="container-fluid text-light">
 	Welcome to Trandiano~ 
 </h1>
-<button onclick="window.location.href='FaceLookingfor'" type="button">Looking for Something</button>
-<button onclick="window.location.href='FaceRegisterHome'" type="button">Register</button>
-<button onclick="window.location.href='FaceLoginHome'" type="button">Customer Log in</button>
-<button onclick="window.location.href='FaceWriteFeedback'" type="button">Write Feedback</button>
+<div class="container-fluid">
+<p class="text-light">Welcome~ The time is ${serverTime}. </p>
+<div>
+<table>
+<h3>
+<button onclick="window.location.href='FaceLookingfor'" type="button" class="btn btn-secondary btn-lg">Looking for Something</button>
+<div class="clearfix" style="margin-bottom: 30px;"></div>
+</h3>
+
+<h3>
+<button onclick="window.location.href='FaceRegisterHome'" type="button" class="btn btn-secondary btn-lg">Register</button>
+<button onclick="window.location.href='FaceLoginHome'" type="button" class="btn btn-secondary btn-lg">Customer Log in</button>
+<div class="clearfix" style="margin-bottom: 30px;"></div>
+</h3>
+
+<h3>
+<button onclick="window.location.href='FaceWriteFeedback'" type="button" class="btn btn-secondary btn-lg">Write Feedback</button>
+<button onclick="window.location.href='FaceMakeDonation'" type="button" class="btn btn-secondary btn-lg">Make Donation</button>
+<div class="clearfix" style="margin-bottom: 100px;"></div>
+</h3>
+<p>
+<button onclick="window.location.href='FaceEmployeeLoginHome'" type="button" class="btn btn-outline-dark"">Employee Log in</button>
+</p>
+<p>
+<button onclick="window.location.href='FaceFacebookLogin'" type="button" class="btn btn-outline-dark"">Techies login</button>
+<div class="clearfix" style="margin-bottom: 30px;"></div>
+
+</p>
+</table>
+</div>
+<div>
 <button onclick="window.location.href='FaceReadFeedback'" type="button">Read Feedback</button>
-<button onclick="window.location.href='FaceEmployeeLoginHome'" type="button">Employee Log in</button>
 <button onclick="window.location.href='FaceWriteClothes'" type="button">Add new Product</button>
-<button onclick="window.location.href='FaceFacebookLogin'" type="button">Techies login</button>
-<P>  Welcome~ The time on the server is ${serverTime}. </P>
+<button onclick="window.location.href='FaceManageDonation'" type="button">Manage Donation</button>
+
+</div>
+
 </body>
 </html>

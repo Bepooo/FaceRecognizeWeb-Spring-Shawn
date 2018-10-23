@@ -28,8 +28,17 @@ public class Resume {
 	@Column(name = "Age")
 	private int age;
 	
+	@Column(name = "Gender")
+	private String gender;
+	
+	@Column(name = "Capability")
+	private String capability;
+	
 	@Column(name = "Company")
 	private String company;
+	
+	@Column(name = "Education")
+	private String education;
 
 	@Column(name = "Department")
 	private String department;
@@ -75,6 +84,30 @@ public class Resume {
 		this.age = age;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+	
+	public String getCapability() {
+		return capability;
+	}
+
+	public void setCapability(String capability) {
+		this.capability = capability;
+	}
+	
 	public String getTime() {
 		return time;
 	}
@@ -151,7 +184,7 @@ public class Resume {
 	}
 	public String toString() {
 
-		        return "Resume [Resumeid=" + resumeid + ", JobPostId=" + jobpostid + ", Name="+name+", Age="+age+", Location=" + location + ", Company="
+		        return "Resume [Resumeid=" + resumeid + ", JobPostId=" + jobpostid + ", Name="+name+", Age="+age+", Gender="+gender+", Education="+education+", Capability="+capability+", Location=" + location + ", Company="
 	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + "]";
 		    }
 

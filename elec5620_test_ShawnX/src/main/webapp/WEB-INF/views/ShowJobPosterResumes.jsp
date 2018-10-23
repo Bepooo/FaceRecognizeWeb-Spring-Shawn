@@ -20,8 +20,12 @@ For candidatures
 
 				<td>Name</td>
 				<td>Age</td>
+				<td>Gender</td>
+				<td>Education</td>
+				<td>Capability</td>
 				<td>JobPostId</td>
 				<td>ResumeId</td>
+				
 				<td>Company</td>
 
 			</tr>
@@ -33,6 +37,9 @@ For candidatures
 					<td>${resume.name}</td>
 
 					<td>${resume.age}</td>
+					<td>${resume.gender}</td>
+					<td>${resume.education}</td>
+					<td>${resume.capability}</td>
 					
 					<%-- <td>${resume.id}</td> --%>
 

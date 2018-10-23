@@ -9,6 +9,9 @@
 <body>
 <script>
   // This is called with the results from from FB.getLoginStatus().
+ /*  function action() {
+	  document.getElementById('login').style.display='block';
+  } */
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -79,7 +82,9 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
-      window.location.href = "http://localhost:8080/sydney/FaceTechies";
+      document.getElementById('login').hidden='';
+
+      /* window.location.href = "http://localhost:8080/sydney/FaceTechies"; */
     });
   }
 </script>
@@ -94,6 +99,9 @@
 </fb:login-button>
 
 <div id="status">
+</div>
+<div id="login" hidden="hidden">
+<button  onclick="window.location.href='http://localhost:8080/sydney/FaceTechies'" type="button">Use this account to login</button>
 </div>
 
 </body>
