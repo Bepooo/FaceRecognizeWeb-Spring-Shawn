@@ -25,6 +25,12 @@ public class Feedback {
 
     @Column(name = "time")
     private String time;
+    
+    @Column(name = "employmenttype")
+    private String employmenttype;
+    
+    @Column(name = "location")
+    private String location;
 
    
     public int getId() {
@@ -51,6 +57,22 @@ public class Feedback {
         this.time = time;
     }
     
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
+    public String getEmploymenttype() {
+        return employmenttype;
+    }
+
+    public void getEmploymenttype(String employmenttype) {
+        this.employmenttype = employmenttype;
+    }
+    
     public String getType() {
         return type;
     }
@@ -63,6 +85,6 @@ public class Feedback {
     public String toString() {
 
         return "Feedback [Id=" + id + ", Feedback=" + feedback + ", Time="
-            + time + ", type" + type+"]";
+            + time + ", type" + type+", employmenttype="+employmenttype+", location="+location+"]";
     }
 }

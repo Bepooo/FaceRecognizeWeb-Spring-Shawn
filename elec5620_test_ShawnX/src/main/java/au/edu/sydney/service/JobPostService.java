@@ -28,4 +28,10 @@ public class JobPostService {
 	public List getJobPosts() {
         return jobPostDao.getJobPosts();
     }
+
+
+	public List getJobpostsByQuery(String[] limits) {
+		// TODO Auto-generated method stub
+		return jobPostDao.getJobpostsByQuery(limits);
+	}
 }

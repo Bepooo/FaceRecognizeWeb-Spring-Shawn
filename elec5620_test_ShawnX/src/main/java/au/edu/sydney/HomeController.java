@@ -26,11 +26,13 @@ import org.hibernate.mapping.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +42,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+
 
 import au.edu.sydney.dao.FeedbackDao;
 import au.edu.sydney.dao.JobPostDao;
@@ -55,6 +59,7 @@ import au.edu.sydney.domain.Donation;
 import au.edu.sydney.domain.Feedback;
 import au.edu.sydney.domain.JobPost;
 import au.edu.sydney.domain.Person;
+import au.edu.sydney.domain.QA;
 //import au.edu.sydney.domain.Product;
 import au.edu.sydney.domain.Resume;
 import au.edu.sydney.domain.Shoppingassist;
@@ -64,6 +69,7 @@ import au.edu.sydney.service.DonationService;
 import au.edu.sydney.service.FeedbackService;
 import au.edu.sydney.service.JobPostService;
 import au.edu.sydney.service.PersonService;
+import au.edu.sydney.service.QAService;
 //import au.edu.sydney.service.ProductService;
 import au.edu.sydney.service.ResumeService;
 import au.edu.sydney.service.ShoppingassistService;
@@ -389,6 +395,7 @@ public class HomeController {
 	}
 	
 	
+
 	
 	@Autowired
 	ClothesDao clothesDao;
@@ -413,7 +420,7 @@ public class HomeController {
 	@Autowired
 	ClothesService clothesService;
 	@RequestMapping(value = { "/FaceQueryClothes" }, method = RequestMethod.POST)
-	public String FaceFindClothes(Feedback feedback) {
+	public ModelAndView FaceFindClothes(Feedback feedback,ModelMap model) {
 		System.out.println("query clothes"+feedback);
 		String[] limits=new String[2]; 
 		limits[0]=feedback.getFeedback();
@@ -422,12 +429,93 @@ public class HomeController {
 		System.out.println("type= "+limits[1]);
 		List clothessquery=clothesService.getClothesByQuery(limits);
 		
-		//model.addAttribute("Products", productsquery);
+		model.addAttribute("Clotheses", clothessquery);
 		System.out.println(clothessquery);
 		//System.out.println(model);
-		//return new ModelAndView("ShowJobPosterResumes", "model",model);
-		return "FaceHome";
+		return new ModelAndView("FaceQueryClothesResult", "model",model);
+		//return "FaceHome";
 	}
+	
+	@Autowired
+	QAService qaService;
+	@Autowired
+	    MessageSource messageSource;
+
+	@RequestMapping(value = { "/qaManagement" })
+	public String adminReadQA(ModelMap model) {
+	List qas = qaService.getQAs();
+	System.out.print("qas= "+qas);
+    model.addAttribute("qas", qas);
+
+    return "adminReadQA";
+	}
+	
+	@RequestMapping(value = { "/adminWriteQA" }, method = RequestMethod.GET)
+
+	    public String newQA(ModelMap model) {
+	        QA qa = new QA();
+	        model.addAttribute("qa", qa);
+	        model.addAttribute("edit", false);
+	        return "adminQAForm";
+	    }
+	@RequestMapping(value = { "/adminWriteQA" }, method = RequestMethod.POST)
+	public String saveQA(@Valid QA qa, BindingResult result,
+			            ModelMap model) {
+
+			        if (result.hasErrors()) {
+			            return "adminQAForm";
+			        }
+			        /*if(!qaService.isQAUnique(qa.getQuestion(), qa.getAnswer())){
+			        	FieldError ssnError =new FieldError("qa","answer",messageSource.getMessage("non.unique.answer", new String[]{qa.getAnswer()}, Locale.getDefault()));
+			        	            return "adminHome";
+			        	        }*/
+			        	        qaService.addQA(qa);
+			        	        System.out.println(qa);
+			        	        model.addAttribute("success", "Q&A " + qa.getQuestion() +" "+qa.getAnswer()+ " added successfully");
+
+			        	        return "adminQASuccess";
+			        	    }
+
+	
+	
+	
+	 @RequestMapping(value = { "/edit-{id}-qa" }, method = RequestMethod.GET)
+	     public String editQA(@PathVariable int id, ModelMap model) {
+	         QA qa = qaService.findQAById(id);
+	         model.addAttribute("qa", qa);
+	         System.out.println("get into edit question "+id);
+	         //model.addAttribute("edit", true);
+	         return "adminQAForm";
+	     }
+
+
+	     @RequestMapping(value = { "/edit-{id}-qa" }, method = RequestMethod.POST)
+	     public String updateQA(@Valid QA qa, BindingResult result,
+	             ModelMap model, @PathVariable int id) {   
+	         /*if (result.hasErrors()) {
+	             return "adminQAForm";
+	         }
+	         if(!qaService.isQAUnique(qa.getQuestion(), qa.getAnswer())){
+	             FieldError answerError =new FieldError("qa","answer",messageSource.getMessage("non.unique.ssn", new String[]{qa.getAnswer()}, Locale.getDefault()));
+	             result.addError(answerError);
+	             return "adminQAForm";
+	         }*/System.out.println(qa);
+	   	         qaService.updateQA(qa);
+
+	         model.addAttribute("success", "Question " + qa.getQuestion()+" "+qa.getAnswer()  + " updated successfully");
+
+	         return "adminQASuccess";
+
+	     }
+
+
+	     @RequestMapping(value = { "/delete-{id}-qa" }, method = RequestMethod.GET)
+	     public String deleteQA(@PathVariable int id) {
+	         qaService.deleteQAById(id);
+	         return "adminHome";
+	     }
+
+	///////////////
 	
 	
 	@Autowired
@@ -676,7 +764,24 @@ public class HomeController {
 
 	@Autowired
 	JobPostService jobPostService;
+	@RequestMapping(value = { "/jobSeekerQueryJobposts" }, method = RequestMethod.POST)
+	public ModelAndView jobSeekerQueryJobposts(Feedback feedback,ModelMap model ) {
+		System.out.println("query jobposts"+feedback);
+		String[] limits=new String[2]; 
+		limits[0]=feedback.getType();
+		limits[1]=feedback.getFeedback();
+		System.out.println("Employmenttype= "+limits[0]);
+		System.out.println("Location= "+limits[1]);
+		List jobpostsquery=jobPostService.getJobpostsByQuery(limits);
+		
+		model.addAttribute("JobPosts", jobpostsquery);
+		System.out.println(jobpostsquery);
+		//System.out.println(model);
+		return new ModelAndView("jobSeekerViewAllJobPosts", "model",model);
+		//return "FaceHome";
+	}
 
+	
 	@RequestMapping(value = "/deleteLatestJobPost")
 	public String deletejobPost() {
 		System.out.println("É¾³ý");

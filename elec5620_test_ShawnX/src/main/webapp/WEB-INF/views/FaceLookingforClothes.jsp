@@ -38,11 +38,38 @@
 					<td><input type="submit" value="Submit" /></td>
 					<td><input type="reset" value="Reset" /></td>
 				</tr>
-
-			
-		
-		
 		</form>
+		
+		<p>${Clotheses}</p>
+		<tr>
+
+			<!-- <td>Feedback id</td> -->
+			<td>Color</td>
+			<td>Types</td>
+			<td>Location</td>
+			<td>Price</td>
+
+		</tr>
+
+		<c:forEach items="${Clotheses}" var="Clothes">
+
+			<tr>
+
+				<td>${Clothes.color}</td>
+
+				<td>${Clothes.type}</td>
+
+				<td>${Clothes.location}</td>
+				
+				<td>${Clothes.price}</td>
+				
+			</tr>
+
+		</c:forEach>
+		
+		
+		
+		
 		</table>
 </body>
 </html>

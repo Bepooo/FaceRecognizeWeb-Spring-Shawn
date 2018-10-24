@@ -34,7 +34,7 @@ public class JobPost {
 	@Column(name = "Position")
 	private String position;
 
-	@Column(name = "Employmenttype")
+	@Column(name = "employmenttype")
 	private String employmenttype;
 
 	@Column(name = "Jobdescription")

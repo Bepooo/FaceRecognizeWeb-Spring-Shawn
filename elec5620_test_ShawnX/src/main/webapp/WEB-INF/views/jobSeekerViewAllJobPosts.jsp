@@ -16,6 +16,36 @@ For candidatures
 
 	<table>
 <p>${JobPosts}</p>
+<tr>
+		<form id="saveForm" action="jobSeekerQueryJobposts"  modelAttribute="feedback" method="post">
+		
+				<tr>
+					<td>Types</td>
+					<td><select name=type value= type>
+							<option value="Fulltime">FullTime</option>
+							<option value="Parttime">PartTime</option>
+							<option value="Others">Others</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td><select name=feedback value=feedback>
+							<option value="Sydney">Sydney</option>
+							<option value="Melbourne">Melbourne</option>
+							<option value="others">Others</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Submit" /></td>
+					<td><input type="reset" value="Reset" /></td>
+				</tr>
+
+			
+		</form>
+
+
+
+
 		<tr>
 
 			<td>JobPostid</td>

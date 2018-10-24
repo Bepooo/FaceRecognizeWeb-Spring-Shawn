@@ -6,8 +6,10 @@ import javax.annotation.Resource;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import au.edu.sydney.domain.Clothes;
 import au.edu.sydney.domain.JobPost;
 
 @Repository(value = "jobPostDao")
@@ -45,6 +47,15 @@ public class JobPostDao {
     
     public List getJobPostByCompany(String co) {
 		return sessionFactory.getCurrentSession().createQuery("from JobPost where Company=?").setParameter(0, co).list();
+	}
+
+	public List getJobpostsByQuery(String[] limits) {
+		// TODO Auto-generated method stub
+		
+		return sessionFactory.getCurrentSession().createCriteria(JobPost.class)
+				.add(Restrictions.like("employmenttype", limits[0]))
+				.add(Restrictions.like("location", limits[1]))
+				.list();
 	}
 
 }
