@@ -33,4 +33,7 @@ public class ShoppingassistService {
 		// TODO Auto-generated method stub
 		return ShoppingassistDao.getShoppingassists();
 	}
+	public Shoppingassist getShoppingassistByQuery(String[] limits) {
+		return ShoppingassistDao.getShoppingassistByQuery(limits);
+	}
 }

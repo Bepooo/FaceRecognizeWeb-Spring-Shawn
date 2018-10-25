@@ -47,6 +47,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import au.edu.sydney.dao.FeedbackDao;
 import au.edu.sydney.dao.JobPostDao;
+import au.edu.sydney.dao.JobSeekerDao;
 import au.edu.sydney.dao.PersonDao;
 import au.edu.sydney.dao.AnnouncementDao;
 import au.edu.sydney.dao.ClothesDao;
@@ -58,6 +59,7 @@ import au.edu.sydney.domain.Clothes;
 import au.edu.sydney.domain.Donation;
 import au.edu.sydney.domain.Feedback;
 import au.edu.sydney.domain.JobPost;
+import au.edu.sydney.domain.JobSeeker;
 import au.edu.sydney.domain.Person;
 import au.edu.sydney.domain.QA;
 //import au.edu.sydney.domain.Product;
@@ -68,6 +70,7 @@ import au.edu.sydney.service.ClothesService;
 import au.edu.sydney.service.DonationService;
 import au.edu.sydney.service.FeedbackService;
 import au.edu.sydney.service.JobPostService;
+import au.edu.sydney.service.JobSeekerService;
 import au.edu.sydney.service.PersonService;
 import au.edu.sydney.service.QAService;
 //import au.edu.sydney.service.ProductService;
@@ -195,23 +198,25 @@ public class HomeController {
 	@Autowired
 	ShoppingassistDao shoppingassistDao;
 	@RequestMapping(value = "/FaceAddShoppingassist", method = RequestMethod.POST)
-	public String AddShoppingassist(Shoppingassist shoppingassist) {
+	public String FaceAddShoppingassist(Shoppingassist shoppingassist) {
 
 		Shoppingassist f = new Shoppingassist();
-
 
 		f.setName(shoppingassist.getName());
 		f.setPassword(shoppingassist.getPassword());
 
-
+		System.out.println(f);
 		shoppingassistDao.saveShoppingassist(f);
 		System.out.print(shoppingassist.getName());
 		System.out.print(shoppingassist.getPassword());
-		return "FaceHome";
+		return "FaceTechiesHome";
 	}
 	@Autowired
 	ShoppingassistService shoppingassistService;
 
+	
+	
+	
 	@RequestMapping(value = "/FaceReadShoppingassist", method = RequestMethod.GET)
 	public String FaceReadShoppingassist(ModelMap model) {
 		System.out.println("FaceReadShoppingassist");
@@ -231,6 +236,34 @@ public class HomeController {
 		shoppingassistService.deleteShoppingassistById(id);
 		return "FaceHome";
 	}
+	@RequestMapping(value = { "/FaceShoppingassistHomeLogin" }, method = RequestMethod.GET)
+	public String FaceShoppingassistHomeLogin(ModelMap model) {
+
+		System.out.println("FaceShoppingassistHomeLogin");
+		return "FaceShoppingassistHomeLogin";
+	}
+	@RequestMapping(value = { "/FaceShoppingassistLogin" }, method = RequestMethod.POST)
+	public ModelAndView ShoppingAssistlogin(Shoppingassist shoppingassist,ModelMap model) {
+		System.out.println("query shoppingassist"+shoppingassist);
+		String[] limits=new String[2]; 
+		limits[0]=shoppingassist.getName();
+		limits[1]=shoppingassist.getPassword();
+		System.out.println("name= "+limits[0]);
+		System.out.println("password= "+limits[1]);
+		Shoppingassist shoppingassistquery=shoppingassistService.getShoppingassistByQuery(limits);
+		if(shoppingassistquery==null)
+		{
+			return new ModelAndView("FaceHome", "model",model);
+		}
+		else {
+			String shoppingassistname=shoppingassistquery.getName();
+		model.addAttribute("Shoppingassistquery", shoppingassistname);
+		System.out.println(shoppingassistquery);
+		return new ModelAndView("FaceShoppingassistHome", "model",shoppingassistname);
+		}
+	}
+	
+	
 	
 	/*
 	 * @RequestMapping(value = "/jdbcAdd", method = RequestMethod.GET) public String
@@ -710,6 +743,58 @@ public class HomeController {
 
 	////////////////////////////////////////////////////////
 
+	
+	@RequestMapping(value = "/registerJobSeeker", method = RequestMethod.GET)
+	public String registerJobSeeker() {
+		//Local.DeleteFile();
+		System.out.println("registerJobSeeker");
+		return "registerJobSeeker";
+	}
+	
+	@RequestMapping(value = "/loginJobSeeker", method = RequestMethod.GET)
+	public String loginJobSeeker() {
+		//Local.DeleteFile();
+		System.out.println("loginJobSeeker");
+		return "loginJobSeeker";
+	}
+	
+	@Autowired
+	JobSeekerDao jobSeekerDao;
+	@RequestMapping(value = "/AddNewJobSeeker", method = RequestMethod.POST)
+	public String AddNewJobSeeker(JobSeeker jobSeeker) {
+
+		JobSeeker f = new JobSeeker();
+
+
+		f.setName(jobSeeker.getName());
+		f.setPassword(jobSeeker.getPassword());
+
+
+		jobSeekerDao.saveJobSeeker(f);
+		System.out.print(jobSeeker.getName());
+		System.out.print(jobSeeker.getPassword());
+		return "FaceHome";
+	}
+	
+	@Autowired
+	JobSeekerService jobSeekerService;
+	@RequestMapping(value = { "/JobSeekerlogin" }, method = RequestMethod.POST)
+	public ModelAndView JobSeekerlogin(JobSeeker jobSeeker,ModelMap model) {
+		System.out.println("query jobSeeker"+jobSeeker);
+		String[] limits=new String[2]; 
+		limits[0]=jobSeeker.getName();
+		limits[1]=jobSeeker.getPassword();
+		System.out.println("name= "+limits[0]);
+		System.out.println("password= "+limits[1]);
+		JobSeeker loginjobseeker=jobSeekerService.getJobSeekerByQuery(limits);
+		//List jobseekerloginquery=jobSeekerService.getClothesByQuery(limits);
+		
+		model.addAttribute("Jobseekerloginquery", loginjobseeker);
+		System.out.println(loginjobseeker);
+		//System.out.println(model);
+		return new ModelAndView("home", "model",model);
+		//return "FaceHome";
+	}
 	@Autowired
 	JobPostDao jobpostDao;
 

@@ -31,7 +31,7 @@
 <div class="clearfix" style="margin-bottom: 100px;"></div>
 </h3>
 <p>
-<button onclick="window.location.href='FaceEmployeeLoginHome'" type="button" class="btn btn-outline-dark"">Employee Log in</button>
+<button onclick="window.location.href='FaceShoppingassistHomeLogin'" type="button" class="btn btn-outline-dark"">Employee Log in</button>
 </p>
 <p>
 <button onclick="window.location.href='FaceFacebookLogin'" type="button" class="btn btn-outline-dark"">Techies login</button>
@@ -39,12 +39,6 @@
 
 </p>
 </table>
-</div>
-<div>
-<button onclick="window.location.href='FaceReadFeedback'" type="button">Read Feedback</button>
-<button onclick="window.location.href='FaceWriteClothes'" type="button">Add new Product</button>
-<button onclick="window.location.href='FaceManageDonation'" type="button">Manage Donation</button>
-
 </div>
 
 </body>

@@ -8,19 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testshoppingassist2")
-public class Shoppingassist {
+@Table(name = "testJobSeeker1")
+public class JobSeeker {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column(name = "Name")
+    private String name;
+    
     @Column(name = "password")
     private String password;
 
-    @Column(name = "Name")
-    private String name;
+
 
    
     public int getId() {
@@ -51,7 +53,7 @@ public class Shoppingassist {
    
     public String toString() {
 
-        return "Person [Id=" + id + ", Name=" + name + ", Password=" 
+        return "JobSeeker [Id=" + id + ", Name=" + name + ", Password=" 
         		+ password + "]";
     }
    

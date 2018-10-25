@@ -5,11 +5,11 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import au.edu.sydney.domain.JobPost;
-import au.edu.sydney.domain.Person;
-import au.edu.sydney.domain.Product;
+
+
 import au.edu.sydney.domain.Shoppingassist;
 
 @Repository(value = "shoppingassistDao")
@@ -44,5 +44,13 @@ public class ShoppingassistDao {
 	public List getShoppingassists() {
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createCriteria(Shoppingassist.class).list();
+	}
+
+	public Shoppingassist getShoppingassistByQuery(String[] limits) {
+		// TODO Auto-generated method stub
+		return (Shoppingassist) sessionFactory.getCurrentSession().createCriteria(Shoppingassist.class)
+				.add(Restrictions.like("name", limits[0]))
+				.add(Restrictions.like("password", limits[1]))
+				.uniqueResult();
 	}
 }
