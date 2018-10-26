@@ -1,15 +1,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <!--     <p><a href="http://localhost:8080/sydney/JobPostHome">Job Post</a>
     <a href="http://localhost:8080/sydney/ResumeCentre">Resume Centre</a>
     <a href="http://localhost:8080/sydney/JobCentre">Jobs Centre</a>
     </p> -->
 </head>
-<body>
+<body background="https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
 	<h3>Welcome, enter your personal information</h3>
 	<form id="saveForm" action="FaceAddPerson" method="post">
-		<table style="font-size: :16px">
+	<div class="form-group">
+		<table style="font-size: :16px" class="text-light" class="table">
 			<tr>
 				<td>First Name</td>
 				<td><input type="text" name="first" /></td>
@@ -26,7 +28,7 @@
 			<tr>
 				<td>Gender</td>
 				<td><!-- <input type="text" name="gender" /> -->
-				<select name="gender" name="gender">
+				<select name="gender" name="gender" style="color:gray;">
 			<option value="male">male</option>
 			<option value="female">female</option>
 
@@ -36,17 +38,17 @@
 			<tr>
 				<td>Favor</td>
 				<td><!-- <input type="text" name="favor" /> -->
-				<select name="favor" name="favor">
+				<select name="favor" name="favor"  style="color:gray;">
 				<option value="black">Black</option>
 			<option value="blue">Blue</option>
 			<option value="white">White</option></td>
 			</tr>
 			<tr>
 				<td>Height</td>
-				<td><input type="text" name="height" /></td>
+				<td><input type="text"  name="height" /></td>
 			</tr>
 			<tr>
-				<td>FaceToken</td>
+				<!-- <td>FaceToken</td> -->
 				<td><input type="hidden" value=${model} name="faceto" /></td>
 			</tr>
 <!-- 			<tr>
@@ -57,7 +59,14 @@
 				<td><input type="submit" value="Submit" /></td>
 				<td><input type="reset" value="Reset" /></td>
 			</tr>
+			</div>
 		</table>
+		<p>
+		</p>
+		<p>
+		</p>
+		<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-sm font-weight-bold">Back
+			to the home page</button>
 </body>
 </html>
 <%-- <form:form method="POST" action="/sydney/FaceAddPerson" modelAttribute="person">

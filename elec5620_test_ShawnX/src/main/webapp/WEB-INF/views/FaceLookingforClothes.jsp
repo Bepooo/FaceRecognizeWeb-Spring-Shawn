@@ -34,7 +34,10 @@
 					</select></td>
 					
 				</tr>
-				
+				<tr>
+				<div>
+				</div>
+				</tr>
 				
 				
 				<tr>
@@ -52,8 +55,8 @@
 				
 				
 				
-					<td><button type="submit" class="btn btn-submit btn-lg">Submit</button></td>
-					<td><input type="reset" value="Reset"  class="btn btn-submit btn-lg" /></td>
+					<td><button type="submit" class="btn btn-secondary btn-lg">Submit</button></td>
+					<td><input type="reset" value="Reset"class="btn btn-secondary btn-lg"/></td>
 				</tr>
 		</form>
 		</table>

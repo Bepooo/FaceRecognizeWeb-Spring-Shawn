@@ -3,10 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 <title>Facebook Login JavaScript Example</title>
 <meta charset="UTF-8">
 </head>
-<body>
+<body class="p-3 mb-2 bg-secondary text-white">
+
 <script>
   // This is called with the results from from FB.getLoginStatus().
  /*  function action() {
@@ -101,8 +104,12 @@
 <div id="status">
 </div>
 <div id="login" hidden="hidden">
-<button  onclick="window.location.href='http://localhost:8080/sydney/FaceTechies'" type="button">Use this account to login</button>
+<button  onclick="window.location.href='http://localhost:8080/sydney/FaceTechies'" type="button" class="btn btn-info btn-lg font-weight-bold">Use this account to login</button>
 </div>
+<p>
+</p>
+<div><button onclick="window.location.href='FaceHome'" type="button" class="btn btn-warning btn-lg font-weight-bold">Back
+			to home page</button></div>
 
 </body>
 </html>

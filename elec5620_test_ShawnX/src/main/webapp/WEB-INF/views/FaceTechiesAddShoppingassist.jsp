@@ -1,9 +1,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 </head>
-<body>
+<body class="p-3 mb-2 bg-secondary text-white">
 	<h3>Welcome, developer~</h3>
 	<h3>Enter new shopping assist information</h3>
 	<form id="saveForm" action="FaceAddShoppingassist" method="post">
@@ -23,5 +24,9 @@
 			</tr>
 		</table>
 		</form>
+		<p>
+		</p>
+		<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-warning btn-lg font-weight-bold">Back
+			to home page</button></div>
 </body>
 </html>

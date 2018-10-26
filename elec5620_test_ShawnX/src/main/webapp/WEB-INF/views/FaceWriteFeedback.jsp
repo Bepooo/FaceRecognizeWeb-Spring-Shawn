@@ -20,7 +20,7 @@
 <div class="form-row">
     <div class="col-4">
 <div class="text-white">
-		<p>Feedback type:</p> <select name="type" value=  modelAttribute="jobpost" class="form-control form-control-sm">
+		<p>Feedback type:</p> <select name="type" value=  modelAttribute="jobpost" class="form-control-sm">
 			<option value="type a">aaaaaaaaaaaaa</option>
 			<option value="type b">bbbbbbbbbbbbb</option>
 			<option value="type c">ccccccccccccc</option>
@@ -30,7 +30,7 @@
 		</div>
 		</div>
 		
-		 <input type="text" style="width: 415px; height: 200px;"
+		 <input type="text" style="width: 200px; height: 200px;"
 			name="feedback" /> 
 			<div>
 			<input name="Submit" type="submit"	value="Submit" class="btn btn-secondary btn-lg"/> 

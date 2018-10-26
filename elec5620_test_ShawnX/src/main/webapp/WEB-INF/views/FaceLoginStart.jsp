@@ -16,6 +16,8 @@
 	<button id='picture' class="btn btn-secondary btn-lg font-weight-bold">Take a Photo</button>
 	<button onclick="window.location.href='FaceLogining'" id='login' type="button" class="btn btn-secondary btn-lg font-weight-bold">Login</button>
 	<canvas id="canvas" width="640" height="480"></canvas>
+	<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-lg font-weight-bold">Back
+			to the home page</button>
 </body>
 <script type="text/javascript">
     var video = document.getElementById("video");

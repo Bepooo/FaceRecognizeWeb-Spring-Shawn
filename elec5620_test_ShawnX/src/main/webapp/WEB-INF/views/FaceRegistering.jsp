@@ -19,6 +19,8 @@
 	</div><div>
 	<canvas id="canvas" width="640" height="480"></canvas>
 	</div>
+	<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-lg font-weight-bold">Back
+			to the home page</button>
 
 	
 </body>

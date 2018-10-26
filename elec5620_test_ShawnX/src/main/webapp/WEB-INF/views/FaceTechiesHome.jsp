@@ -2,9 +2,11 @@
 <%@ page session="false" %>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 	<title>Home</title>
 </head>
-<body>
+<body class="p-3 mb-2 bg-secondary text-white">
 <h1>
 	Hello world! </h1>
 	<h2> 
@@ -35,6 +37,7 @@
     </div>
     
     
-    
+    <button onclick="window.location.href='FaceHome'" type="button" class="btn btn-warning btn-lg font-weight-bold">Back
+			to home page</button></div>
 </body>
 </html>

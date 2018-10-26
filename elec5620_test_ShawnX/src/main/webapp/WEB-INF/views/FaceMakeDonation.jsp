@@ -5,15 +5,15 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 </head>
-<body >
+<body background="https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
 
 
 <!--  class="text-white" -->
-	<h3>Welcome, feel free to make your donation~</h3>
+	<h3 class="container-fluid text-light">Welcome, feel free to make your donation~</h3>
 	<form id="saveForm" action="FaceAddDonation" method="post">
-		<table style="font-size: :18px">
+		<table style="font-size: :18px" class="text-light">
 			<tr>
-				<td>Type</td>
+				<td class="text-light">Type</td>
 				<td><select name="type" name="type" class="form-control form-control-sm">
 						<option value="Jacket">Jacket</option>
 						<option value="T-shirt">T-shirt</option>
@@ -24,7 +24,7 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td>Color</td>
+				<td class="text-light">Color</td>
 				<td><select name="color" name="color" class="form-control form-control-sm">
 						<option value="black">Black</option>
 						<option value="blue">Blue</option>
@@ -32,12 +32,11 @@
 						<option value="others">Others</option>
 				</select></td>
 			</tr>
-			<tr>
-				Description: <input type="text" name="description" />
+			<tr ><td>Description:</td><td> <input type="text" name="description"/></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Submit" class="btn btn-outline-dark"/></td>
-				<td><input type="reset" value="Reset" class="btn btn-outline-dark" /></td>
+				<td><input type="submit" value="Submit" class="btn btn-secondary btn-lg"/></td>
+				<td><input type="reset" value="Reset" class="btn btn-secondary btn-lg" /></td>
 			</tr>
 		</table>
 	</form>
