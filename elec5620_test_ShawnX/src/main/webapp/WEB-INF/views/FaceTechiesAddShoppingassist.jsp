@@ -28,5 +28,5 @@
 		</p>
 		<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-warning btn-lg font-weight-bold">Back
 			to home page</button></div>
-</body>
+			</body>
 </html>

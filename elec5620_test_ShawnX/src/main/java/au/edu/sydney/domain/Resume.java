@@ -25,6 +25,12 @@ public class Resume {
 	@Column(name = "Name")
 	private String name;
 	
+	@Column(name = "Username")
+	private String username;
+	
+	@Column(name = "Postername")
+	private String postername;
+	
 	@Column(name = "Age")
 	private int age;
 	
@@ -84,6 +90,15 @@ public class Resume {
 		this.age = age;
 	}
 
+	public String getPostername() {
+		return postername;
+	}
+
+	public void setPostername(String postername) {
+		this.postername = postername;
+	}
+	
+	
 	public String getGender() {
 		return gender;
 	}
@@ -123,6 +138,14 @@ public class Resume {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getUsername() {
+		// System.out.print("getlocation"+location);
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	
@@ -184,7 +207,7 @@ public class Resume {
 	}
 	public String toString() {
 
-		        return "Resume [Resumeid=" + resumeid + ", JobPostId=" + jobpostid + ", Name="+name+", Age="+age+", Gender="+gender+", Education="+education+", Capability="+capability+", Location=" + location + ", Company="
+		        return "Resume [Resumeid=" + resumeid + ", JobPostId=" + jobpostid + ", Username="+username+", Postername="+postername+", Name="+name+", Age="+age+", Gender="+gender+", Education="+education+", Capability="+capability+", Location=" + location + ", Company="
 	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + "]";
 		    }
 

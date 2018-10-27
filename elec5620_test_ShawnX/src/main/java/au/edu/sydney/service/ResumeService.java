@@ -34,8 +34,14 @@ public class ResumeService {
     }*/
 
 
-	public List getResumeByRid(String rid) {
+	public List getResumeByRid(int rid) {
 		// TODO Auto-generated method stub
 		return ResumeDao.getResumeByRid(rid);
+	}
+
+
+	public List getResumeByPoster(String u) {
+		// TODO Auto-generated method stub
+		return ResumeDao.getResumeByPoster(u);
 	}
 }

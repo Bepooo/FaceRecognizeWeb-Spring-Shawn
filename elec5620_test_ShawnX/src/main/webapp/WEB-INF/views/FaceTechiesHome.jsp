@@ -39,5 +39,12 @@
     
     <button onclick="window.location.href='FaceHome'" type="button" class="btn btn-warning btn-lg font-weight-bold">Back
 			to home page</button></div>
+			<div><p>
+			</p>
+			<button onclick="window.location.href='FaceReadFeedback'" type="button" class="btn btn-warning btn-lg font-weight-bold">Read Feedbacks</button></div>
+			<p>
+			</p>
+			<div>
+			<button onclick="href='https://github.com/Bepooo/FaceRecognizeWeb-Spring-Shawn/commits/Shawn'" type="button" class="btn btn-warning btn-lg font-weight-bold">Historical Versions
 </body>
 </html>

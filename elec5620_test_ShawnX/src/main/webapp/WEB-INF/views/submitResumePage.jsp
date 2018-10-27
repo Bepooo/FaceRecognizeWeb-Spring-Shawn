@@ -19,6 +19,10 @@
 				<td>JobPost Id</td>
 				<td><input type="text" value="${model}" name="model" /></td>
 			</tr>
+<%-- 			<tr>
+				<td>JobPost Poster Name</td>
+				<td><input type="text" value="${model.postername}" name="model" /></td>
+			</tr> --%>
 			<tr>
 				<td>Name</td>
 				<td><input type="text" value="${Resume.name }" name="name" /></td>

@@ -27,10 +27,14 @@ public class JobPostDao {
     }
 
     
-    public int saveJobPost(JobPost jobpost) {
+    public String[] saveJobPost(JobPost jobpost) {
         sessionFactory.getCurrentSession().save(jobpost);
         int cid=jobpost.getId();
-        return cid;
+        String posterna=jobpost.getPostername();
+        String[] result=new String[2];
+        		result[0]=String.valueOf(cid);
+        		result[1]=posterna;
+        return result;
     }
 
 	public void deleteJobPostById(int i) {
@@ -47,6 +51,11 @@ public class JobPostDao {
     
     public List getJobPostByCompany(String co) {
 		return sessionFactory.getCurrentSession().createQuery("from JobPost where Company=?").setParameter(0, co).list();
+	}
+    
+    public JobPost getJobPosterById(int i) {
+		// TODO Auto-generated method stub
+		return (JobPost) sessionFactory.getCurrentSession().createQuery("from JobPost where id=?").setParameter(0, i).uniqueResult();
 	}
 
 	public List getJobpostsByQuery(String[] limits) {

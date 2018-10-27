@@ -15,7 +15,9 @@
 	<h1 class="container-fluid text-light">Welcome!</h1><h1 class="container-fluid text-light"> ${model} </h1>
 <p><button onclick="window.location.href='FaceReadFeedback'" type="button" class="btn btn-secondary btn-lg">Read Feedback</button>
 <button onclick="window.location.href='FaceWriteClothes'" type="button" class="btn btn-secondary btn-lg">Add new Product</button>
+<button onclick="window.location.href='FaceReadClothes'" type="button" class="btn btn-secondary btn-lg">Manage Clothes</button>	
 <button onclick="window.location.href='FaceManageDonation'" type="button" class="btn btn-secondary btn-lg">Manage Donation</button></p>
+
 	<table>
 	<p></p>
 		<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-lg font-weight-bold">Back

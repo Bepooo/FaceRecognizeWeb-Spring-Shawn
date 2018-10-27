@@ -9,11 +9,11 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import au.edu.sydney.domain.JobSeeker;
+import au.edu.sydney.domain.JobPoster;
 
-@Repository(value = "jobSeekerDao")
+@Repository(value = "jobPosterDao")
 @Transactional
-public class JobSeekerDao {
+public class JobPosterDao {
 
 	@Resource
 	private SessionFactory sessionFactory;
@@ -26,27 +26,27 @@ public class JobSeekerDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void saveJobSeeker(JobSeeker jobSeeker) {
-		sessionFactory.getCurrentSession().save(jobSeeker);
+	public void saveJobPoster(JobPoster jobPoster) {
+		sessionFactory.getCurrentSession().save(jobPoster);
 	}
 
 	
-	public void deleteJobSeekerById(int i) {
-		 sessionFactory.getCurrentSession().createQuery("delete JobSeeker where id=?").setParameter(0, i).executeUpdate();
+	public void deleteJobPosterById(int i) {
+		 sessionFactory.getCurrentSession().createQuery("delete JobPoster where id=?").setParameter(0, i).executeUpdate();
 	}
 	
 
-	public List getJobSeekers() {
+	public List getJobPosters() {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createCriteria(JobSeeker.class).list();
+		return sessionFactory.getCurrentSession().createCriteria(JobPoster.class).list();
 	}
 	
-	 public JobSeeker getJobSeekerByQuery(String[] limits) {
+	 public JobPoster getJobPosterByQuery(String[] limits) {
 			// TODO Auto-generated method stub
 			//return sessionFactory.getCurrentSession().createQuery("from Product where color=?and type=?").setParameter(0, query).setParameter(1, query).list();
 			//return null;
 			
-			return (JobSeeker) sessionFactory.getCurrentSession().createCriteria(JobSeeker.class)
+			return (JobPoster) sessionFactory.getCurrentSession().createCriteria(JobPoster.class)
 					.add(Restrictions.like("email", limits[0]))
 					.add(Restrictions.like("password", limits[1]))
 					.uniqueResult();

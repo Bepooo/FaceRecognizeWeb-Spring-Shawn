@@ -36,4 +36,7 @@ public class ClothesService {
 		// TODO Auto-generated method stub
 		return clothesDao.getClothesByQuery(limits);
 	}
+
+
+
 }

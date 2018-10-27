@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testJobSeeker2")
-public class JobSeeker {
+@Table(name = "testJobPoster2")
+public class JobPoster {
 
     @Id
     @Column(name = "id")
@@ -61,7 +61,7 @@ public class JobSeeker {
    
     public String toString() {
 
-        return "JobSeeker [Id=" + id + ", Email=" + email + ", Password=" 
+        return "JobPoster [Id=" + id + ", Email=" + email + ", Password=" 
         		+ password + ", Name=" + name+"]";
     }
 

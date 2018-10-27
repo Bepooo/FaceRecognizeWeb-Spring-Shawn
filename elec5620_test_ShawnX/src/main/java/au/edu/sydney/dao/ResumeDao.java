@@ -29,10 +29,14 @@ public class ResumeDao {
 
 	}
 
-	public List getResumeByRid(String rid) {
+	public List getResumeByRid(int rid) {
 		// TODO Auto-generated method stub
-		return sessionFactory.getCurrentSession().createQuery("from Resume where jobPostId=?").setParameter(0, rid).list();
+		return sessionFactory.getCurrentSession().createQuery("from Resume where Id=?").setParameter(0, rid).list();
 		//return null;
 	}
-
+	public List getResumeByPoster(String u) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from Resume where Postername=?").setParameter(0, u).list();
+		//return null;
+	}
 }

@@ -108,7 +108,7 @@ public class HomeController {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		return "home";
+		return "Homepage";
 	}
 	
 	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
@@ -469,6 +469,25 @@ public class HomeController {
 		//return "FaceHome";
 	}
 	
+	@RequestMapping(value = "/FaceReadClothes", method = RequestMethod.GET)
+	public String FaceReadClothes(ModelMap model) {
+		System.out.println("FaceReadClothes");
+
+		// 遍历集合，查看查询到的数据
+		List clotheses = clothesService.getClothes();
+		model.addAttribute("Clotheses", clotheses);
+		System.out.println(clotheses);
+
+		return "FaceShowClothes";
+	}
+	
+	@RequestMapping(value = { "/delete-{id}-clothes" }, method = RequestMethod.GET)
+    public String deleteClothes(@PathVariable int id) {
+        clothesService.deleteClothesById(id);
+        return "FaceShowClothes";
+    }
+	
+	
 	@Autowired
 	QAService qaService;
 	@Autowired
@@ -542,11 +561,7 @@ public class HomeController {
 	     }
 
 
-	     @RequestMapping(value = { "/delete-{id}-qa" }, method = RequestMethod.GET)
-	     public String deleteQA(@PathVariable int id) {
-	         qaService.deleteQAById(id);
-	         return "adminHome";
-	     }
+	     
 
 	///////////////
 	
@@ -744,7 +759,7 @@ public class HomeController {
 	////////////////////////////////////////////////////////
 
 	
-	@RequestMapping(value = "/registerJobSeeker", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/registerJobSeeker", method = RequestMethod.GET)
 	public String registerJobSeeker() {
 		//Local.DeleteFile();
 		System.out.println("registerJobSeeker");
@@ -757,8 +772,8 @@ public class HomeController {
 		System.out.println("loginJobSeeker");
 		return "loginJobSeeker";
 	}
-	
-	@Autowired
+	*/
+	/*@Autowired
 	JobSeekerDao jobSeekerDao;
 	@RequestMapping(value = "/AddNewJobSeeker", method = RequestMethod.POST)
 	public String AddNewJobSeeker(JobSeeker jobSeeker) {
@@ -794,12 +809,12 @@ public class HomeController {
 		//System.out.println(model);
 		return new ModelAndView("home", "model",model);
 		//return "FaceHome";
-	}
+	}*/
 	@Autowired
 	JobPostDao jobpostDao;
 
 	@RequestMapping(value = "/addJobPost", method = RequestMethod.POST)
-	public String submitJP(@Valid @ModelAttribute("jobpost") JobPost jobpost, BindingResult result, ModelMap model) {
+	public String submitJP(@Valid @ModelAttribute("jobpost") JobPost jobpost, BindingResult result, ModelMap model,HttpSession session) {
 		if (result.hasErrors()) {
 			return "error";
 		}
@@ -807,7 +822,7 @@ public class HomeController {
 		Date dateobj = new Date();
 		System.out.println(df.format(dateobj));
 		String time = df.format(dateobj);
-
+		String u=(String)session.getAttribute("Name");
 		JobPost p = new JobPost();
 		// p.setId(jobpost.getId());
 		// System.out.println(p.getId());
@@ -820,12 +835,21 @@ public class HomeController {
 		p.setJobdescription(jobpost.getJobdescription());
 		p.setRequirements(jobpost.getRequirements());
 		p.setTime(time);
+		p.setPostername(u);
 		System.out.println("time= " + time);
+		System.out.println("beforesave"+p);
 		// jobpostDao.saveJobPost(p);
-		JobPostid = jobpostDao.saveJobPost(p);// largest id in database
+		String[] result1=new String[2];
+		result1=jobpostDao.saveJobPost(p);
+		JobPostid=Integer.parseInt(result1[0]);
+				String JobPostname = result1[1];
+		//JobPostid = jobpostDao.saveJobPost(p);// largest id in database saveveeeeeeee
 		p.setId(JobPostid);
 		System.out.print("JobPostId= " + JobPostid);
-
+		
+		System.out.println("aftersave"+jobpost.getPostername());
+		
+		model.addAttribute("postername", JobPostname);
 		model.addAttribute("location", jobpost.getLocation());
 		model.addAttribute("company", jobpost.getCompany());
 		model.addAttribute("department", jobpost.getDepartment());
@@ -835,7 +859,7 @@ public class HomeController {
 		model.addAttribute("requirements", jobpost.getRequirements());
 		model.addAttribute("time", time);
 		model.addAttribute("jobpostid", JobPostid);
-
+		System.out.println(jobpost.getPostername());
 		System.out.println(jobpost.getId());
 		System.out.println(jobpost.getLocation());
 		System.out.println(jobpost.getDepartment());
@@ -862,7 +886,7 @@ public class HomeController {
 		model.addAttribute("JobPosts", jobpostsquery);
 		System.out.println(jobpostsquery);
 		//System.out.println(model);
-		return new ModelAndView("jobSeekerViewAllJobPosts", "model",model);
+		return new ModelAndView("jobSeekerViewAllJobPostsPage", "model",model);
 		//return "FaceHome";
 	}
 
@@ -913,7 +937,7 @@ public class HomeController {
 	//////////////////////////////////////////
 	// For job seekers
 	//////////////////////////////////////////
-	@RequestMapping(value = "/jobSeekerViewAllJobPosts", method = RequestMethod.GET)
+	@RequestMapping(value = "/jobSeekerViewAllJobPosts")
 	public String viewAllJobPosts(ModelMap model) {
 		System.out.println("jobSeeker Read JobPosts");
 
@@ -922,23 +946,39 @@ public class HomeController {
 		model.addAttribute("JobPosts", jobposts);
 		System.out.println(jobposts);
 
-		return "jobSeekerViewAllJobPosts";
+		return "jobSeekerViewAllJobPostsPage";
 	}
 
+	
+
+	
+	
 	@Autowired
 	ResumeDao resumeDao;
-
+	JobPostDao jobPostDao;
 	@RequestMapping(value = "/save-{model}-resume")
-	public String addResume(Resume resume, int model) {
+	public String addResume(Resume resume, int model, HttpSession session) {
+		////
+		
+		
+		
+		String u=(String)session.getAttribute("Name");
+		System.out.println(u);
 		System.out.println("model= " + model);
+		JobPost j=jobpostDao.getJobPosterById(model);
+		String n=j.getPostername();
+		System.out.println(n);
+		
 		System.out.println(resume);
 		Resume r = new Resume();
+		r.setUsername(u);
 		r.setJobPostId(model);
 		r.setName(resume.getName());
 		r.setAge(resume.getAge());
 		r.setGender(resume.getGender());
 		r.setEducation(resume.getEducation());
 		r.setCapability(resume.getCapability());
+		r.setPostername(n);
 
 		System.out.println(r);
 		resumeDao.saveResume(r);
@@ -960,9 +1000,10 @@ public class HomeController {
 	 * ModelAndView showFormJP() { return new ModelAndView("JobPostHome", "jobpost",
 	 * new JobPost()); }
 	 */
-	@RequestMapping(value = { "/apply-{id}-apply" }, method = RequestMethod.GET)
-	public ModelAndView applyJobPostById(@PathVariable int id, ModelMap model) {
+	@RequestMapping(value = { "/apply-{id}-resume" }, method = RequestMethod.GET)
+	public ModelAndView applyJobPostById(@PathVariable int id,ModelMap model) {
 		System.out.println("applying" + id);
+
 		model.addAttribute("JobPostId", id);
 
 		System.out.println(model);
@@ -974,12 +1015,13 @@ public class HomeController {
 		// return "submitResumePageController";
 	}
 
-	////////////////////// resumecentre
+	////////////////////// resumecentref
 	@RequestMapping(value = { "/ResumeCentre" }, method = RequestMethod.GET)
-	public ModelAndView findResumeByJobPostPoster(ModelMap model) {
-		System.out.println("queryresume");
-		String rid = "9";
-		List resumesquery = resumeService.getResumeByRid(rid);
+	public ModelAndView findResumeByJobPostPoster(ModelMap model,HttpSession session) {
+		String u=(String)session.getAttribute("Name");
+		System.out.println("queryresume"+u);
+		int rid=27;
+		List resumesquery = resumeService.getResumeByPoster(u);
 		model.addAttribute("Resumes", resumesquery);
 		System.out.println(resumesquery);
 		System.out.println(model);

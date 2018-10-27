@@ -16,6 +16,10 @@
 			<td>${jobpostid}</td>
 		</tr>
 		<tr>
+			<td><form:label path="JobPoster">JobPoster</form:label></td>
+			<td>${postername}</td>
+		</tr>
+		<tr>
 			<td><form:label path="time">Time</form:label></td>
 			<td>${time}</td>
 		</tr>

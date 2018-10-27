@@ -16,6 +16,9 @@ public class JobPost {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int JobPostid;
 
+	@Column(name = "Postername")
+	private String postername;
+	
 	@Column(name = "age")
 	private int age;
 
@@ -66,7 +69,17 @@ public class JobPost {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	
+	public String getPostername() {
+		// System.out.print("getlocation"+location);
+		return postername;
+	}
 
+	public void setPostername(String postername) {
+		this.postername = postername;
+	}
+
+	
 	public String getLocation() {
 		// System.out.print("getlocation"+location);
 		return location;
@@ -126,7 +139,7 @@ public class JobPost {
 	public String toString() {
 
 		        return "JobPost [JobPostid=" + JobPostid + ", Location=" + location + ", Company="
-	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + "]";
+	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + ", Postername="+postername+"]";
 		    }
 
 }
