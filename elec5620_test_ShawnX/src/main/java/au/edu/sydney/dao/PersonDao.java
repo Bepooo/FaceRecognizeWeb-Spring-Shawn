@@ -32,4 +32,9 @@ public class PersonDao {
 		return (List) sessionFactory.getCurrentSession().createQuery("from Person where first=?").setParameter(0, username).list();
 		//return null;
 	}
+
+	public Person getPersonById(int id) {
+		// TODO Auto-generated method stub
+		return (Person) sessionFactory.getCurrentSession().createQuery("from Person where id=?").setParameter(0, id).uniqueResult();
+	}
 }

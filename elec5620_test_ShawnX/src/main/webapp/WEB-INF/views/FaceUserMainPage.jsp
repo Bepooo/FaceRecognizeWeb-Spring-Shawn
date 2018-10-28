@@ -23,8 +23,12 @@
 
 				<td>First</td>
 				<td>Last</td>
+				<td>Phonenumber</td>
+				<td>Email</td>
+				<td>Our Advice for You~</td>
+				<td>Edit?</td>
 				<!-- <td>Age</td> -->
-				<td>Our Advices</td>
+				
 				
 
 			</tr>
@@ -40,8 +44,17 @@
 					<%-- <td>${person.age}</td> --%>
 
 					<td>
-						${person.favor} ${person.advice}
+					${person.phonenumber} 
+						
 					</td>
+					<td>
+					${person.email} 
+					</td>
+					<td>
+					${person.advice}
+					</td>
+
+<td><a href="<c:url value='/edit-${person.id}-person' />">edit your information?</a></td>
 
 
 
@@ -52,6 +65,19 @@
 			</c:forEach>
 
 		</table>
+		<p></p>
+		
+		<h2>
+		New Products on sale~ Red Jumper
+		<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-sm font-weight-bold">Book now~</button>
+		</h2><p>
+		</P>
+		</p>
+		<p>
+		<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-sm font-weight-bold">Buy clothes with discount</button>
+		</p>
+		<p>
+		</p>
 		<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-sm font-weight-bold">Back
 			to the home page</button>
 </body>

@@ -76,12 +76,22 @@ public class Local {
 
 	public static  String getAdvice(Person p) {
 		String advice;
+		System.out.println(p.getGender());
 		if (p.getAge()<30)
 		{
-			advice=(p.getFavor()+" T-shirt");
+			
+			if (p.getGender().equals("male")) {
+				advice=(p.getFavor()+" T-shirt");
+			}else {
+				advice=(p.getFavor()+" Skirt");
+			}
 		}
 		else {
-			advice=(p.getFavor()+" Jacket");
+			if (p.getGender().equals("female")) {
+				advice=(p.getFavor()+" Jacket");
+			}else {
+				advice=(p.getFavor()+" Jeans");
+			}
 		}
 		return advice;
 		// TODO Auto-generated method stub

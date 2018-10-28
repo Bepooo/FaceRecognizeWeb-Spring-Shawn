@@ -26,6 +26,14 @@
 				<td><input type="text" name="age" /></td>
 			</tr>
 			<tr>
+				<td>Phone number</td>
+				<td><input type="text" name="phonenumber" /></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" name="email" /></td>
+			</tr>
+			<tr>
 				<td>Gender</td>
 				<td><!-- <input type="text" name="gender" /> -->
 				<select name="gender" name="gender" style="color:gray;">

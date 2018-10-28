@@ -34,4 +34,10 @@ public class JobPostService {
 		// TODO Auto-generated method stub
 		return jobPostDao.getJobpostsByQuery(limits);
 	}
+
+
+	public List getJobPostsByPostername(String u) {
+		// TODO Auto-generated method stub
+		return jobPostDao.getJobPostsByPostername(u);
+	}
 }

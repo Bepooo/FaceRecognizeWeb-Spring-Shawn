@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testperson1")
+@Table(name = "testperson2")
 public class Person {
 
     @Id
@@ -45,6 +45,12 @@ public class Person {
 
     @Column(name = "advice")
 	private String advice;
+    
+    @Column(name = "phonenumber")
+	private String phonenumber;
+    
+    @Column(name = "email")
+	private String email;
 
     @Column(name = "facety")
 	private String facety;
@@ -89,6 +95,21 @@ public class Person {
         this.gender = gender;
     }
     
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     /*public  String getFaceToken() {
         return facetoken;
     }

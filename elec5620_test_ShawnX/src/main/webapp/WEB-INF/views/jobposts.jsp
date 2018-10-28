@@ -22,6 +22,7 @@
 			<td>Company</td>
 			<td>Department</td>
 			<td>Employment Type</td>
+			<td>Poster Name</td>
 			<td>Delete it?</td>
 			<td></td>
 
@@ -40,6 +41,8 @@
 				<td>${JobPost.department}</td>
 
 				<td>${JobPost.employmenttype}</td>
+				
+				<td>${JobPost.postername}</td>
 				
 				<td><a href="<c:url value='/delete-${JobPost.id}-jobpost'/>">delete</a></td>
 

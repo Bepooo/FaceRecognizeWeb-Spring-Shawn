@@ -67,4 +67,9 @@ public class JobPostDao {
 				.list();
 	}
 
+	public List getJobPostsByPostername(String u) {
+		// TODO Auto-generated method stub
+		return (List) sessionFactory.getCurrentSession().createQuery("from JobPost where postername=?").setParameter(0, u).list();
+	}
+
 }

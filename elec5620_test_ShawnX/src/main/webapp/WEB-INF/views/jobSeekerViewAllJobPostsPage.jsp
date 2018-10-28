@@ -36,7 +36,7 @@ For candidatures
 					</select></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="Submit" /></td>
+					<td><input type="submit" value="Query" /></td>
 					<td><input type="reset" value="Reset" /></td>
 				</tr>
 

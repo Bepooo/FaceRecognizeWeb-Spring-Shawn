@@ -322,6 +322,8 @@ public class HomeController {
 		p.setAge(25);
 		p.setFirst("FirstName");
 		p.setLast("lastName");
+		p.setPhonenumber("phonenumber");
+		p.setEmail("email");
 
 		personDao.savePerson(p);
 
@@ -620,7 +622,37 @@ public class HomeController {
 	//////////////////////////////////
 	@Autowired
 	PersonService personService;	
+	 @RequestMapping(value = { "/edit-{id}-person" }, method = RequestMethod.GET)
+     public String editPerson(@PathVariable int id, ModelMap model) {
+         Person person = personService.getPersonById(id);
+         model.addAttribute("person", person);
+         System.out.println("get into edit person information "+id);
+         //model.addAttribute("edit", true);
+         return "FacePersonForm";
+     }
 
+
+     @RequestMapping(value = { "/edit-{id}-person" }, method = RequestMethod.POST)
+     public String updatePerson(@Valid Person person, BindingResult result,
+             ModelMap model, @PathVariable int id) {   
+         /*if (result.hasErrors()) {
+             return "adminQAForm";
+         }
+         if(!qaService.isQAUnique(qa.getQuestion(), qa.getAnswer())){
+             FieldError answerError =new FieldError("qa","answer",messageSource.getMessage("non.unique.ssn", new String[]{qa.getAnswer()}, Locale.getDefault()));
+             result.addError(answerError);
+             return "adminQAForm";
+         }*/System.out.println(person);
+   	         personService.updatePerson(person);
+
+         
+
+         return "FaceHome";
+
+     }
+	
+	
+	
 	@RequestMapping(value = "/FaceAddPerson")
 	public String addPerson(Person person) {
 		//Person p = new Person();
@@ -633,7 +665,7 @@ public class HomeController {
 			System.out.println("b= " + b);
 			if (b.equals("no")) {
 				System.out.println("user not exists, true");
-
+				
 				person.setAdvice(Local.getAdvice(person));
 				
 				//person.setAdvice(advice);
@@ -641,7 +673,7 @@ public class HomeController {
 				personService.addPerson(person);
 				FaceAdd.add(person.getId(), person.getFirst(), person.getFaceto());
 				// get advices
-				return "FaceUserMainPage";
+				return "FaceHome";
 			} else if (b.equals("yes")) {
 				System.out.println("user exists");
 
@@ -908,11 +940,11 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/JobCentre", method = RequestMethod.GET)
-	public String readJobPost(ModelMap model) {
+	public String readJobPost(ModelMap model, HttpSession session) {
 		System.out.println("read");
-
+		String u=(String)session.getAttribute("Name");
 		// 遍历集合，查看查询到的数据
-		List jobposts = jobPostService.getJobPosts();
+		List jobposts = jobPostService.getJobPostsByPostername(u);
 		model.addAttribute("JobPosts", jobposts);
 		System.out.print(jobposts);
 
