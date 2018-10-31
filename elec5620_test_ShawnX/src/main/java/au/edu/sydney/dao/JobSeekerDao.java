@@ -51,4 +51,18 @@ public class JobSeekerDao {
 					.add(Restrictions.like("password", limits[1]))
 					.uniqueResult();
 		}
+
+	public JobSeeker getJobSeekerByQueryAnswer(String[] limits) {
+		// TODO Auto-generated method stub
+		return (JobSeeker) sessionFactory.getCurrentSession().createCriteria(JobSeeker.class)
+				.add(Restrictions.like("email", limits[0]))
+				.add(Restrictions.like("qanswer", limits[1]))
+				.uniqueResult();
+	}
+
+	public JobSeeker findJobSeekerByName(String uname) {
+		return (JobSeeker) sessionFactory.getCurrentSession().createCriteria(JobSeeker.class)
+				.add(Restrictions.like("name", uname))
+				.uniqueResult();
+	}
 }

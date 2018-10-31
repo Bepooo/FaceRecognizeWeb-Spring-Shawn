@@ -8,13 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testjobpost4")
+@Table(name = "testjobpost30")
 public class JobPost {
 
 	@Id
 	@Column(name = "JobPostid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int JobPostid;
+	private int jobPostid;
 
 	@Column(name = "Postername")
 	private String postername;
@@ -46,12 +46,14 @@ public class JobPost {
 	@Column(name = "Requirements")
 	private String requirements;
 
+	
+
 	public int getId() {
-		return JobPostid;
+		return jobPostid;
 	}
 
-	public void setId(int id) {
-		this.JobPostid = id;
+	public void setId(int jobPostid) {
+		this.jobPostid = jobPostid;
 	}
 
 	public int getAge() {
@@ -138,8 +140,8 @@ public class JobPost {
 	}
 	public String toString() {
 
-		        return "JobPost [JobPostid=" + JobPostid + ", Location=" + location + ", Company="
-	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + ", Postername="+postername+"]";
+		        return "JobPost [JobPostid=" + jobPostid + ", Location=" + location + ", Company="
+	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + ", Requirements="+requirements+", Position="+position+"]";
 		    }
 
 }

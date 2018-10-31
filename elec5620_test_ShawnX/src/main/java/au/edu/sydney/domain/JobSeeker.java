@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testJobSeeker2")
+@Table(name = "testJobSeeker30")
 public class JobSeeker {
 
     @Id
@@ -24,6 +24,9 @@ public class JobSeeker {
 
     @Column(name = "Name")
     private String name;
+    
+    @Column(name = "Qanswer")
+    private String qanswer;
 
    
     public int getId() {
@@ -57,12 +60,18 @@ public class JobSeeker {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+    public String getQanswer() {
+        return qanswer;
+    }
+
+    public void setQanswer(String qanswer) {
+        this.qanswer = qanswer;
+    }
    
     public String toString() {
 
         return "JobSeeker [Id=" + id + ", Email=" + email + ", Password=" 
-        		+ password + ", Name=" + name+"]";
+        		+ password + ", Name=" + name+", Qanswer="+qanswer+"]";
     }
 
 

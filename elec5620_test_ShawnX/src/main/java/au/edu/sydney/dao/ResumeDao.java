@@ -39,4 +39,15 @@ public class ResumeDao {
 		return sessionFactory.getCurrentSession().createQuery("from Resume where Postername=?").setParameter(0, u).list();
 		//return null;
 	}
+
+	public List getResumeByName(String u) {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("from Resume where Username=?").setParameter(0, u).list();
+	}
+
+	public void deleteResumeById(int id) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().createQuery("delete Resume where id=?").setParameter(0, id).executeUpdate();
+			
+	}
 }

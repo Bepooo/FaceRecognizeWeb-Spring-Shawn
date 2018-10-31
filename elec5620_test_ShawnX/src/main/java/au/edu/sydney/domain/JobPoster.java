@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testJobPoster2")
+@Table(name = "testJobPoster30")
 public class JobPoster {
 
     @Id
@@ -24,6 +24,9 @@ public class JobPoster {
 
     @Column(name = "Name")
     private String name;
+    
+    @Column(name = "Faceto")
+    private String faceto;
 
    
     public int getId() {
@@ -58,11 +61,17 @@ public class JobPoster {
         this.email = email;
     }
     
-   
+    public  String getFaceto() {
+        return faceto;
+    }
+
+    public void setFaceto(String faceto) {
+        this.faceto = faceto;
+    }
     public String toString() {
 
         return "JobPoster [Id=" + id + ", Email=" + email + ", Password=" 
-        		+ password + ", Name=" + name+"]";
+        		+ password + ", Name=" + name+", faceto="+faceto+"]";
     }
 
 

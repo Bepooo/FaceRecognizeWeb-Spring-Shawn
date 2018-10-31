@@ -44,4 +44,16 @@ public class ResumeService {
 		// TODO Auto-generated method stub
 		return ResumeDao.getResumeByPoster(u);
 	}
+
+
+	public List getResumeByName(String u) {
+		// TODO Auto-generated method stub
+		return ResumeDao.getResumeByName(u);
+	}
+
+
+	public void deleteResumeById(int id) {
+		ResumeDao.deleteResumeById(id);
+		
+	}
 }

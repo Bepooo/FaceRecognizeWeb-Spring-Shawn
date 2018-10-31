@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testResume2")
+@Table(name = "testResume30")
 public class Resume {
 
 	@Id
@@ -208,7 +208,7 @@ public class Resume {
 	public String toString() {
 
 		        return "Resume [Resumeid=" + resumeid + ", JobPostId=" + jobpostid + ", Username="+username+", Postername="+postername+", Name="+name+", Age="+age+", Gender="+gender+", Education="+education+", Capability="+capability+", Location=" + location + ", Company="
-	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + "]";
+	                + company + ", Department=" + department + ", Employment Type=" + employmenttype + ", Job description="+jobdescription+"]";
 		    }
 
 }

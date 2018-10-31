@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import au.edu.sydney.domain.Clothes;
 import au.edu.sydney.domain.JobPost;
+import au.edu.sydney.domain.QA;
 
 @Repository(value = "jobPostDao")
 public class JobPostDao {
@@ -71,5 +72,13 @@ public class JobPostDao {
 		// TODO Auto-generated method stub
 		return (List) sessionFactory.getCurrentSession().createQuery("from JobPost where postername=?").setParameter(0, u).list();
 	}
+
+	public JobPost getJobpostById(int id) {
+		// TODO Auto-generated method stub
+		return (JobPost) sessionFactory.getCurrentSession().createCriteria(JobPost.class).add(Restrictions.like("jobPostid", id)).uniqueResult();
+
+	}
+
+
 
 }

@@ -3,11 +3,11 @@
 
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<title>RegisterHome</title>
+<title>Register as an HR</title>
 
 </head>
 
-<body background="https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+<body background="https://cdn.hrpayrollsystems.net/wp-content/uploads/2015/10/Dollarphotoclub_87612113.jpg">
 <title>Invoke the camera first, then take a picture and submit.</title>
 <title>The image will be delete automaticaly when you log out.</title>
 
@@ -19,7 +19,7 @@
 	</div><div>
 	<canvas id="canvas" width="640" height="480"></canvas>
 	</div>
-	<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-lg font-weight-bold">Back
+	<button onclick="window.location.href='http://localhost:8080/sydney/'" type="button" class="btn btn-secondary btn-lg font-weight-bold">Back
 			to the home page</button>
 
 	

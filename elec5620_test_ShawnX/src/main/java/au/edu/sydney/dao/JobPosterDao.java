@@ -51,4 +51,11 @@ public class JobPosterDao {
 					.add(Restrictions.like("password", limits[1]))
 					.uniqueResult();
 		}
+
+	public JobPoster getJobPosterByName(String username) {
+		// TODO Auto-generated method stub
+		return (JobPoster) sessionFactory.getCurrentSession().createCriteria(JobPoster.class)
+				.add(Restrictions.like("name", username))
+				.uniqueResult();
+	}
 }

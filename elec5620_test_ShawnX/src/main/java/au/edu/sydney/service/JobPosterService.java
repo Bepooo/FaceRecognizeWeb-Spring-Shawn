@@ -33,4 +33,8 @@ public class JobPosterService {
 		// TODO Auto-generated method stub
 		return JobPosterDao.getJobPosterByQuery(limits);
 	}
+	public JobPoster getJobPosterByName(String username) {
+		// TODO Auto-generated method stub
+		return JobPosterDao.getJobPosterByName(username);
+	}
 }

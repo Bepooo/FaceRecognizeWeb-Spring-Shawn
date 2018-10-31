@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "testclothes1")
+@Table(name = "testclothes30")
 public class Clothes {
 
 	@Id

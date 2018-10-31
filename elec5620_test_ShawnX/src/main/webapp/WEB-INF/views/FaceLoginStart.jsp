@@ -16,7 +16,7 @@
 	<button id='picture' class="btn btn-secondary btn-lg font-weight-bold">Take a Photo</button>
 	<button onclick="window.location.href='FaceLogining'" id='login' type="button" class="btn btn-secondary btn-lg font-weight-bold">Login</button>
 	<canvas id="canvas" width="640" height="480"></canvas>
-	<button onclick="window.location.href='FaceHome'" type="button" class="btn btn-secondary btn-lg font-weight-bold">Back
+	<button onclick="window.location.href='http://localhost:8080/sydney/'" type="button" class="btn btn-secondary btn-lg font-weight-bold">Back
 			to the home page</button>
 </body>
 <script type="text/javascript">
@@ -33,7 +33,7 @@
     }
     start.onclick = function () {
     	document.getElementById("picture").style.visibility = "visible";
-        if (navigator.mediaDevices.getUserMedia) { // 标准的API
+        if (navigator.mediaDevices.getUserMedia) { // 
             var p = navigator.mediaDevices.getUserMedia({
                 video: true
             });
